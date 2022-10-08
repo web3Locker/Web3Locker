@@ -59,10 +59,11 @@ class DemoNavbar extends React.Component {
             id="navbar-main"
           >
             <Container>
-              <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
+              <NavbarBrand className="mr-lg-5 py-3" to="/" tag={Link}>
+                
               <span style={{fontSize: '30px'}} >
-                Web3Locker
-              </span>
+                        Web3Locker
+                      </span>
                 {/* <img
                   alt="..."
                   src={require("assets/img/brand/argon-react-white.png")}
@@ -182,7 +183,7 @@ class DemoNavbar extends React.Component {
                     </DropdownMenu>
                   </UncontrolledDropdown> */}
                 {/* </Nav> */}
-                <Nav className="align-items-lg-center ml-lg-auto" navbar>
+                {/* <Nav className="align-items-lg-center ml-lg-auto" navbar> */}
                   {/* <NavItem>
                     <NavLink
                       className="nav-link-icon"
@@ -231,7 +232,7 @@ class DemoNavbar extends React.Component {
                       Follow us on Twitter
                     </UncontrolledTooltip>
                   </NavItem> */}
-                  <NavItem>
+                  {/* <NavItem>
                     <NavLink
                       className="nav-link-icon"
                       href="https://github.com/creativetimofficial/argon-design-system-react"
@@ -246,23 +247,9 @@ class DemoNavbar extends React.Component {
                     <UncontrolledTooltip delay={0} target="tooltip112445449">
                       Star us on Github
                     </UncontrolledTooltip>
-                  </NavItem>
-                  <NavItem className="d-none d-lg-block ml-lg-4">
-                    <Button
-                      className="btn-neutral btn-icon"
-                      color="default"
-                      href="/login-page"
-                      target="_blank"
-                    >
-                      {/* <span className="btn-inner--icon">
-                        <i className="fa fa-cloud-download mr-2" />
-                      </span> */}
-                      <span className="nav-link-inner--text ml-1">
-                        Login
-                      </span>
-                    </Button>
-                  </NavItem>
-                </Nav>
+                  </NavItem> */}
+                  
+                {/* </Nav> */}
               </UncontrolledCollapse>
             </Container>
           </Navbar>
