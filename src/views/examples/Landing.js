@@ -1,23 +1,6 @@
-/*!
-
-=========================================================
-* Argon Design System React - v1.1.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // nodejs library that concatenates classes
-import classnames from "classnames";
+// import classnames from "classnames";
 
 // reactstrap components
 import {
@@ -25,12 +8,7 @@ import {
   Button,
   Card,
   CardBody,
-  CardImg,
-  FormGroup,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
+  
   Container,
   Row,
   Col
@@ -38,10 +16,7 @@ import {
 
 // core components
 import DemoNavbar from "components/Navbars/DemoNavbar.js";
-import CardsFooter from "components/Footers/CardsFooter.js";
-
 // index page sections
-import Download from "../IndexSections/Download.js";
 
 class Landing extends React.Component {
   state = {};
@@ -53,11 +28,11 @@ class Landing extends React.Component {
   render() {
     return (
       <>
-        <DemoNavbar />
+        {/* <DemoNavbar /> */}
         <main ref="main">
           <div className="position-relative">
             {/* shape Hero */}
-            <section className="section section-lg section-shaped pb-250">
+            <section className="section section-lg section-shaped">
               <div className="shape shape-style-1 shape-default">
                 <span />
                 <span />
@@ -68,22 +43,28 @@ class Landing extends React.Component {
                 <span />
                 <span />
                 <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
               </div>
-              <Container className="py-lg-md d-flex">
+              <Container className="py-lg-md d-flex ">
                 <div className="col px-0">
                   <Row>
                     <Col lg="6">
-                      <h1 className="display-3 text-white">
-                        A beautiful Design System{" "}
-                        <span>completed with examples</span>
+                      <h1 className="display-3 text-white my-3">
+                      <span>Safeguard All The Documents</span>
                       </h1>
                       <p className="lead text-white">
-                        The design system comes with four pre-built pages to
-                        help you get started faster. You can change the text and
-                        images and you're good to go.
+                      Web3Locker allows the users to create their accounts and upload their documents.
+                       These verified documents can be shared and accessed by the user as desired
                       </p>
                       <div className="btn-wrapper">
-                        <Button
+                        {/* <Button
                           className="btn-icon mb-3 mb-sm-0"
                           color="info"
                           href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/alerts?ref=adsr-landing-page"
@@ -92,17 +73,15 @@ class Landing extends React.Component {
                             <i className="fa fa-code" />
                           </span>
                           <span className="btn-inner--text">Components</span>
-                        </Button>
+                        </Button> */}
                         <Button
                           className="btn-white btn-icon mb-3 mb-sm-0 ml-1"
                           color="default"
-                          href="https://www.creative-tim.com/product/argon-design-system-react?ref=adsr-landing-page"
+                          href="/login-page"
                         >
-                          <span className="btn-inner--icon mr-1">
-                            <i className="ni ni-cloud-download-95" />
-                          </span>
+                         
                           <span className="btn-inner--text">
-                            Download React
+                            Login
                           </span>
                         </Button>
                       </div>
@@ -129,7 +108,7 @@ class Landing extends React.Component {
             </section>
             {/* 1st Hero Variation */}
           </div>
-          <section className="section section-lg pt-lg-0 mt--200">
+          {/* <section className="section section-lg pt-lg-0 mt--200">
             <Container>
               <Row className="justify-content-center">
                 <Col lg="12">
@@ -169,8 +148,8 @@ class Landing extends React.Component {
                           </Button>
                         </CardBody>
                       </Card>
-                    </Col>
-                    <Col lg="4">
+                    </Col> */}
+                    {/* <Col lg="4">
                       <Card className="card-lift--hover shadow border-0">
                         <CardBody className="py-5">
                           <div className="icon icon-shape icon-shape-success rounded-circle mb-4">
@@ -205,8 +184,8 @@ class Landing extends React.Component {
                           </Button>
                         </CardBody>
                       </Card>
-                    </Col>
-                    <Col lg="4">
+                    </Col> */}
+                    {/* <Col lg="4">
                       <Card className="card-lift--hover shadow border-0">
                         <CardBody className="py-5">
                           <div className="icon icon-shape icon-shape-warning rounded-circle mb-4">
@@ -241,13 +220,13 @@ class Landing extends React.Component {
                           </Button>
                         </CardBody>
                       </Card>
-                    </Col>
-                  </Row>
+                    </Col> */}
+                  {/* </Row>
                 </Col>
               </Row>
             </Container>
-          </section>
-          <section className="section section-lg">
+          </section> */}
+           <section className="section section-lg">
             <Container>
               <Row className="row-grid align-items-center">
                 <Col className="order-md-2" md="6">
@@ -256,7 +235,7 @@ class Landing extends React.Component {
                     className="img-fluid floating"
                     src={require("assets/img/theme/promo-1.png")}
                   />
-                </Col>
+        </Col>
                 <Col className="order-md-1" md="6">
                   <div className="pr-md-5">
                     <div className="icon icon-lg icon-shape icon-shape-success shadow rounded-circle mb-5">
@@ -264,9 +243,7 @@ class Landing extends React.Component {
                     </div>
                     <h3>Awesome features</h3>
                     <p>
-                      The kit comes with three pre-built pages to help you get
-                      started faster. You can change the text and images and
-                      you're good to go.
+                    Web3Locker aims towards making it convenient and secure for users to store and share documents
                     </p>
                     <ul className="list-unstyled mt-5">
                       <li className="py-2">
@@ -281,7 +258,7 @@ class Landing extends React.Component {
                           </div>
                           <div>
                             <h6 className="mb-0">
-                              Carefully crafted components
+                            Uses the decentralized platform which makes storing and accessing files faster.
                             </h6>
                           </div>
                         </div>
@@ -297,7 +274,7 @@ class Landing extends React.Component {
                             </Badge>
                           </div>
                           <div>
-                            <h6 className="mb-0">Amazing page examples</h6>
+                            <h6 className="mb-0 py-3">Documents are verified to prevent any forgery or different files from being shared that are not associated to the original account.</h6>
                           </div>
                         </div>
                       </li>
@@ -323,8 +300,9 @@ class Landing extends React.Component {
                 </Col>
               </Row>
             </Container>
-          </section>
-          <section className="section bg-secondary">
+          </section> 
+          
+          {/* <section className="section bg-secondary">
             <Container>
               <Row className="row-grid align-items-center">
                 <Col md="6">
@@ -333,24 +311,22 @@ class Landing extends React.Component {
                       alt="..."
                       src={require("assets/img/theme/img-1-1200x1000.jpg")}
                       top
-                    />
-                    <blockquote className="card-blockquote">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="svg-bg"
-                        preserveAspectRatio="none"
-                        viewBox="0 0 583 95"
-                      >
-                        <polygon
-                          className="fill-default"
-                          points="0,52 583,95 0,95"
-                        />
-                        <polygon
-                          className="fill-default"
-                          opacity=".2"
-                          points="0,42 583,95 683,0 0,95"
-                        />
-                      </svg>
+        />*/
+                    // <blockquote className="card-blockquote">
+                  //   <svg
+                  //   xmlns="http://www.w3.org/2000/svg"
+                  //   preserveAspectRatio="none"
+                  //   version="1.1"
+                  //   viewBox="0 0 2560 100"
+                  //   x="0"
+                  //   y="0"
+                  // >
+                  //   <polygon
+                  //     className="fill-white"
+                  //     points="2560 0 2560 100 0 100"
+                  //   />
+                  // </svg>
+                      /*
                       <h4 className="display-3 font-weight-bold text-white">
                         Design System
                       </h4>
@@ -394,8 +370,8 @@ class Landing extends React.Component {
                 </Col>
               </Row>
             </Container>
-          </section>
-          <section className="section pb-0 bg-gradient-warning">
+          </section> */}
+           <section className="section pb-8 bg-gradient-warning">
             <Container>
               <Row className="row-grid align-items-center">
                 <Col className="order-lg-2 ml-lg-auto" md="6">
@@ -408,37 +384,21 @@ class Landing extends React.Component {
                   </div>
                 </Col>
                 <Col className="order-lg-1" lg="6">
-                  <div className="d-flex px-3">
-                    <div>
-                      <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
-                        <i className="ni ni-building text-primary" />
-                      </div>
-                    </div>
-                    <div className="pl-4">
-                      <h4 className="display-3 text-white">Modern Interface</h4>
-                      <p className="text-white">
-                        The Arctic Ocean freezes every winter and much of the
-                        sea-ice then thaws every summer, and that process will
-                        continue whatever.
-                      </p>
-                    </div>
-                  </div>
+                  
                   <Card className="shadow shadow-lg--hover mt-5">
                     <CardBody>
-                      <div className="d-flex px-3">
+                      <div className="d-flex px-3 ">
                         <div>
-                          <div className="icon icon-shape bg-gradient-success rounded-circle text-white">
-                            <i className="ni ni-satisfied" />
-                          </div>
+                        <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
+                        <i className="ni ni-building text-primary" />
+                      </div> 
                         </div>
                         <div className="pl-4">
                           <h5 className="title text-success">
-                            Awesome Support
+                          Decentralized
                           </h5>
                           <p>
-                            The Arctic Ocean freezes every winter and much of
-                            the sea-ice then thaws every summer, and that
-                            process will continue whatever.
+                          A network of members can contribute their processing power to the service's operation and upkeep. This is the idea behind the decentralized architecture. 
                           </p>
                           <a
                             className="text-success"
@@ -451,7 +411,7 @@ class Landing extends React.Component {
                       </div>
                     </CardBody>
                   </Card>
-                  <Card className="shadow shadow-lg--hover mt-5">
+                  {/* <Card className="shadow shadow-lg--hover mt-5">
                     <CardBody>
                       <div className="d-flex px-3">
                         <div>
@@ -477,8 +437,8 @@ class Landing extends React.Component {
                           </a>
                         </div>
                       </div>
-                    </CardBody>
-                  </Card>
+                    </CardBody> */}
+                  {/* </Card> */}
                 </Col>
               </Row>
             </Container>
@@ -498,8 +458,8 @@ class Landing extends React.Component {
                 />
               </svg>
             </div>
-          </section>
-          <section className="section section-lg">
+          </section> 
+          {/* <section className="section section-lg">
             <Container>
               <Row className="justify-content-center text-center mb-lg">
                 <Col lg="8">
@@ -715,8 +675,8 @@ class Landing extends React.Component {
                 </div>
               </Card>
             </Container>
-          </section>
-          <section className="section section-lg bg-gradient-default">
+          </section> */}
+          {/* <section className="section section-lg bg-gradient-default">
             <Container className="pt-lg pb-300">
               <Row className="text-center justify-content-center">
                 <Col lg="10">
@@ -761,9 +721,9 @@ class Landing extends React.Component {
                   </p>
                 </Col>
               </Row>
-            </Container>
+            </Container> */}
             {/* SVG separator */}
-            <div className="separator separator-bottom separator-skew zindex-100">
+            {/* <div className="separator separator-bottom separator-skew zindex-100">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 preserveAspectRatio="none"
@@ -778,9 +738,9 @@ class Landing extends React.Component {
                 />
               </svg>
             </div>
-          </section>
-          <section className="section section-lg pt-lg-0 section-contact-us">
-            <Container>
+          </section> */}
+          {/* <section className="section section-lg pt-lg-0 section-contact-us"> */}
+            {/* <Container>
               <Row className="justify-content-center mt--300">
                 <Col lg="8">
                   <Card className="bg-gradient-secondary shadow">
@@ -860,11 +820,11 @@ class Landing extends React.Component {
                   </Card>
                 </Col>
               </Row>
-            </Container>
-          </section>
-          <Download />
+            </Container> */}
+          {/* </section> */}
+          {/* <Download /> */}
         </main>
-        <CardsFooter />
+        {/* <CardsFooter /> */}
       </>
     );
   }

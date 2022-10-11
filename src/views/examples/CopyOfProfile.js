@@ -1,12 +1,28 @@
+/*!
+
+=========================================================
+* Argon Design System React - v1.1.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-design-system-react
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
 import React from "react";
 
 // reactstrap components
 import { Button, Card, Container, Row, Col } from "reactstrap";
 
 // core components
-import LoginNavbar from "components/Navbars/LoginNavbar.js";
+import DemoNavbar from "components/Navbars/DemoNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
-
 
 class Profile extends React.Component {
   componentDidMount() {
@@ -17,9 +33,9 @@ class Profile extends React.Component {
   render() {
     return (
       <>
-        <LoginNavbar />
+        <DemoNavbar />
         <main className="profile-page" ref="main">
-        <section className="section-profile-cover section-shaped">
+          <section className="section-profile-cover section-shaped my-0">
             {/* Circles background */}
             <div className="shape shape-style-1 shape-default alpha-4">
               <span />
@@ -67,8 +83,8 @@ class Profile extends React.Component {
                       className="order-lg-3 text-lg-right align-self-lg-center"
                       lg="4"
                     >
-                      <div className="card-profile-actions py-0 mt-lg-0">
-                        {/* <Button
+                      <div className="card-profile-actions py-4 mt-lg-0">
+                        <Button
                           className="mr-4"
                           color="info"
                           href="#pablo"
@@ -76,15 +92,15 @@ class Profile extends React.Component {
                           size="sm"
                         >
                           Connect
-                        </Button> */}
+                        </Button>
                         <Button
                           className="float-right"
-                          color="info"
+                          color="default"
                           href="#pablo"
                           onClick={(e) => e.preventDefault()}
                           size="sm"
                         >
-                          Upload
+                          Message
                         </Button>
                       </div>
                     </Col>
@@ -92,45 +108,50 @@ class Profile extends React.Component {
                       <div className="card-profile-stats d-flex justify-content-center">
                         <div>
                           <span className="heading">22</span>
-                          <span className="description">Total uploads</span>
+                          <span className="description">Friends</span>
                         </div>
-                        {/* <div>
+                        <div>
                           <span className="heading">10</span>
                           <span className="description">Photos</span>
                         </div>
                         <div>
                           <span className="heading">89</span>
                           <span className="description">Comments</span>
-                        </div> */}
+                        </div>
                       </div>
                     </Col>
                   </Row>
                   <div className="text-center mt-5">
                     <h3>
-                      Jessica Jones {/*" "*/}
-                      {/* <span className="font-weight-light">, 27</span> */}
+                      Jessica Jones{" "}
+                      <span className="font-weight-light">, 27</span>
                     </h3>
-                    {/* <div className="h6 font-weight-300">
+                    <div className="h6 font-weight-300">
                       <i className="ni location_pin mr-2" />
                       Bucharest, Romania
-                    </div> */}
-                    {/* <div className="h6 mt-4">
+                    </div>
+                    <div className="h6 mt-4">
                       <i className="ni business_briefcase-24 mr-2" />
                       Solution Manager - Creative Tim Officer
                     </div>
                     <div>
                       <i className="ni education_hat mr-2" />
                       University of Computer Science
-                    </div> */}
+                    </div>
                   </div>
                   <div className="mt-5 py-5 border-top text-center">
                     <Row className="justify-content-center">
                       <Col lg="9">
-                        <span>UPLOADS</span>
                         <p>
-                          <br></br>
-                          <span>INSERT CARDS HERE</span>
+                          An artist of considerable range, Ryan — the name taken
+                          by Melbourne-raised, Brooklyn-based Nick Murphy —
+                          writes, performs and records all of his own music,
+                          giving it a warm, intimate feel with a solid groove
+                          structure. An artist of considerable range.
                         </p>
+                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                          Show more
+                        </a>
                       </Col>
                     </Row>
                   </div>

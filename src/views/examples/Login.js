@@ -35,8 +35,9 @@ import {
 } from "reactstrap";
 
 // core components
-import DemoNavbar from "components/Navbars/DemoNavbar.js";
+import LoginNavbar from "components/Navbars/LoginNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
+import Register from "./Register";
 
 class Login extends React.Component {
   componentDidMount() {
@@ -47,10 +48,10 @@ class Login extends React.Component {
   render() {
     return (
       <>
-        <DemoNavbar />
+        <LoginNavbar />
         <main ref="main">
           <section className="section section-shaped section-lg">
-            <div className="shape shape-style-1 bg-gradient-default">
+            <div className="shape shape-style-1 shape-default">
               <span />
               <span />
               <span />
@@ -60,7 +61,7 @@ class Login extends React.Component {
               <span />
               <span />
             </div>
-            <Container className="pt-lg-7">
+            <Container className="pt-lg-4">
               <Row className="justify-content-center">
                 <Col lg="5">
                   <Card className="bg-secondary shadow border-0">
@@ -172,8 +173,9 @@ class Login extends React.Component {
                     <Col className="text-right" xs="6">
                       <a
                         className="text-light"
-                        href="#pablo"
-                        onClick={(e) => e.preventDefault()}
+                        href="/register-page"
+                        target="_blank"
+                        
                       >
                         <small>Create new account</small>
                       </a>

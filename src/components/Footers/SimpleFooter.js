@@ -109,24 +109,24 @@ class SimpleFooter extends React.Component {
                 <div className=" copyright">
                   © {new Date().getFullYear()}{" "}
                   <a
-                    href="https://www.creative-tim.com?ref=adsr-footer"
+                    href="/"
                     target="_blank"
                   >
-                    Creative Tim
+                    Web3Locker
                   </a>
                   .
                 </div>
               </Col>
               <Col md="6">
                 <Nav className=" nav-footer justify-content-end">
-                  <NavItem>
+                  {/* <NavItem>
                     <NavLink
                       href="https://www.creative-tim.com?ref=adsr-footer"
                       target="_blank"
                     >
                       Creative Tim
                     </NavLink>
-                  </NavItem>
+                  </NavItem> */}
                   <NavItem>
                     <NavLink
                       href="https://www.creative-tim.com/presentation?ref=adsr-footer"
@@ -135,14 +135,14 @@ class SimpleFooter extends React.Component {
                       About Us
                     </NavLink>
                   </NavItem>
-                  <NavItem>
+                  {/* <NavItem>
                     <NavLink
                       href="http://blog.creative-tim.com?ref=adsr-footer"
                       target="_blank"
                     >
                       Blog
                     </NavLink>
-                  </NavItem>
+                  </NavItem> */}
                   <NavItem>
                     <NavLink
                       href="https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md"
