@@ -6,6 +6,7 @@ import { Button, Card, Container, Row, Col } from "reactstrap";
 // core components
 import LoginNavbar from "components/Navbars/LoginNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
+import DocumentCard from "components/DocumentCard";
 
 
 class Profile extends React.Component {
@@ -129,7 +130,8 @@ class Profile extends React.Component {
                         <span>UPLOADS</span>
                         <p>
                           <br></br>
-                          <span>INSERT CARDS HERE</span>
+                          {/* <span>INSERT CARDS HERE</span> */}
+                          <DocumentCard/>
                         </p>
                       </Col>
                     </Row>
