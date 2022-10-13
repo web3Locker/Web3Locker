@@ -22,6 +22,20 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
+import web3modal from '../../web3modal.ts'
+// import Web3 from 'web3'
+
+async function handleLogin() {
+  const provider = await web3modal.connect()
+}
+
+// async function handleLogout() {
+//   if (web3modal.cachedProvider === 'custom-uauth') {
+//     await uauth.logout()
+//   }
+//   web3modal.clearCachedProvider()
+// }
+
 function DemoNavbar(props){
   // const componentDidMount = () => {
   //   let headroom = new Headroom(document.getElementById("navbar-main"));
@@ -102,8 +116,9 @@ return (
                 <Button
                     className="btn-neutral btn-icon"
                     color="default"
-                    href="/login-page"
-                    target="_blank"
+                    onClick={handleLogin}
+                    // href="/login-page"
+                    // target="_blank"
                 >
 
                     <span className="nav-link-inner--text ml-1">
