@@ -63,7 +63,7 @@ class Landing extends React.Component {
                       Web3Locker allows the users to create their accounts and upload their documents.
                        These verified documents can be shared and accessed by the user as desired
                       </p>
-                      <div className="btn-wrapper">
+                      {/* <div className="btn-wrapper"> */}
                         {/* <Button
                           className="btn-icon mb-3 mb-sm-0"
                           color="info"
@@ -74,7 +74,7 @@ class Landing extends React.Component {
                           </span>
                           <span className="btn-inner--text">Components</span>
                         </Button> */}
-                        <Button
+                        {/* <Button
                           className="btn-white btn-icon mb-3 mb-sm-0 ml-1"
                           color="default"
                           href="/login-page"
@@ -83,8 +83,8 @@ class Landing extends React.Component {
                           <span className="btn-inner--text">
                             Login
                           </span>
-                        </Button>
-                      </div>
+                        </Button> */}
+                      {/* </div> */}
                     </Col>
                   </Row>
                 </div>

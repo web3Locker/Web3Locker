@@ -90,10 +90,9 @@ return (
                 <Row>
                 <Col className="collapse-brand" xs="6">
                     <Link to="/">
-                    <img
-                        alt="..."
-                        src={require("assets/img/brand/argon-react.png")}
-                    />
+                    <span style={{fontSize: '30px'}} >
+                        Web3Locker
+                    </span>
                     </Link>
                 </Col>
                 </Row>
