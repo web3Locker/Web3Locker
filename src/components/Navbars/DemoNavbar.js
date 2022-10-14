@@ -24,9 +24,14 @@ import {
 
 import web3modal from '../../web3modal.ts'
 // import Web3 from 'web3'
+import uauthOptions from '../../web3modal.ts'
+import UAuth from '@uauth/js'
 
 async function handleLogin() {
   const provider = await web3modal.connect()
+  console.log(provider)
+  const user = new UAuth(uauthOptions).user().then().catch()
+  console.log(user)
 }
 
 // async function handleLogout() {
