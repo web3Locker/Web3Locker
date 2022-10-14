@@ -7,8 +7,8 @@ import { IUAuthOptions } from '@uauth/web3modal'
 // These options are used to construct the UAuthSPA instance.
 export const uauthOptions: IUAuthOptions = {
   clientID: "671f4386-a936-4c08-bd01-fe74f4203f9e",
-    redirectUri: "http://localhost:3000",
-    scope: "openid wallet"
+  redirectUri: "http://localhost:3000",
+  scope: "openid wallet"
 }
 
 const providerOptions = {
