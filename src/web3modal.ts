@@ -3,12 +3,15 @@ import UAuthSPA from '@uauth/js'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import Web3Modal from 'web3modal'
 import { IUAuthOptions } from '@uauth/web3modal'
-
+import UAuth from '@uauth/js'
 // These options are used to construct the UAuthSPA instance.
 export const uauthOptions: IUAuthOptions = {
   clientID: "671f4386-a936-4c08-bd01-fe74f4203f9e",
   redirectUri: "http://localhost:3000",
   scope: "openid wallet"
+  // clientID: "0ef10a54-e20f-4311-86bc-ba995c5af7e7",
+  // redirectUri: "http://localhost:3000",
+  // scope: "openid wallet"
 }
 
 const providerOptions = {
@@ -37,7 +40,7 @@ const providerOptions = {
 }
 
 const web3modal = new Web3Modal({providerOptions})
-
+new UAuth(uauthOptions).user().then().catch()
 // Register the web3modal so the connector has access to it.
 UAuthWeb3Modal.registerWeb3Modal(web3modal)
 

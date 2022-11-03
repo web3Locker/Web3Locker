@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Headroom from "headroom.js";
 import { useNavigate } from "react-router-dom";
-
 import {
   Button,
   UncontrolledCollapse,
@@ -26,13 +25,46 @@ import web3modal from '../../web3modal.ts'
 // import Web3 from 'web3'
 import uauthOptions from '../../web3modal.ts'
 import UAuth from '@uauth/js'
+const uauth=new UAuth({
+    clientID: "671f4386-a936-4c08-bd01-fe74f4203f9e",
+  redirectUri: "http://localhost:3000",
+  scope: "openid wallet"
+})
 
-async function handleLogin() {
-  const provider = await web3modal.connect()
-  console.log(provider)
-  const user = new UAuth(uauthOptions).user().then().catch()
-  console.log(user)
-}
+// async function handleLogin() {
+//   const provider = await web3modal.connect()
+//   console.log("hello1")
+//   console.log(provider)
+//   const user = new UAuth(uauth).user().then().catch()
+//   console.log("hello2")
+//   console.log("hkvyfiygfiy",user)
+// // const authorization = await uauth.authorization();
+// // const account = uauth.getAuthorizationAccount(authorization);
+// // console.log("hzdfh"+account)
+
+  
+//   const authorization = await uauthOptions.loginWithPopup();
+//   console.log(authorization)
+//   const walletname=authorization.idToken.wallet_address;
+//   console.log("wallet",walletname)
+// // const account = UAuth.getAuthorizationAccount(authorization);
+// // console.log("hello3")
+
+// // console.log(account)
+// }
+const handleLogin = async () => {
+    try {
+      const authorization = await uauth.loginWithPopup()
+      console.log("Logged in")
+      console.log(authorization)
+      const walletname=authorization.idToken.wallet_address;
+      const domainName=authorization.idToken.sub;
+  console.log("wallet address: ",walletname)
+  console.log("Domain name: ",domainName)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
 // async function handleLogout() {
 //   if (web3modal.cachedProvider === 'custom-uauth') {
