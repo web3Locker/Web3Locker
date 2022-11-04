@@ -29,10 +29,10 @@
   },
   "homepage": "https://demos.creative-tim.com/argon-design-system-react/",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && gulp licenses",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "compile-sass": "sass src/assets/scss/argon-design-system-react.scss src/assets/css/argon-design-system-react.css",
     "minify-sass": "sass src/assets/scss/argon-design-system-react.scss src/assets/css/argon-design-system-react.min.css --style compressed"
@@ -47,37 +47,49 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@arcana/storage": "^0.3.16",
     "@uauth/js": "^2.4.0",
     "@uauth/web3modal": "^2.4.0",
     "@walletconnect/web3-provider": "^1.8.0",
+    "assert": "^2.0.0",
     "bootstrap": "4.3.1",
     "classnames": "2.3.1",
+    "crypto": "^1.0.1",
+    "crypto-browserify": "^3.12.0",
+    "ethers": "^5.7.2",
     "headroom.js": "0.12.0",
+    "https-browserify": "^1.0.0",
     "moment": "2.29.4",
     "nouislider": "14.1.1",
-    "react": ">=16.0.0",
+    "os": "^0.1.2",
+    "react": "^18.2.0",
     "react-datetime": "3.1.1",
-    "react-dom": ">=16.0.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "5.1.2",
     "react-scripts": "5.0.1",
     "reactstrap": "8.4.1",
     "sass": "1.53.0",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.0",
     "web3": "^1.8.0",
     "web3modal": "^1.9.9"
   },
-  "peerDependencies": {
-    "react": ">=16.0.0",
-    "react-dom": ">=16.0.0"
-  },
   "devDependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
     "@types/googlemaps": "3.39.2",
     "@types/markerclustererplus": "2.1.33",
+    "@types/node": "^18.11.9",
     "@types/react": "18.0.17",
+    "babel-loader": "^9.1.0",
     "eslint-plugin-flowtype": "8.0.3",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.9",
     "jquery": "3.6.0",
-    "typescript": "4.7.4"
+    "react-app-rewired": "^2.2.1",
+    "typescript": "4.7.4",
+    "webpack": "^5.74.0"
   }
 }

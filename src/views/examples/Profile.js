@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useRef} from "react";
 
 // reactstrap components
 import { Button, Card, Container, Row, Col } from "reactstrap";
@@ -7,19 +7,63 @@ import { Button, Card, Container, Row, Col } from "reactstrap";
 import LoginNavbar from "components/Navbars/LoginNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 import DocumentCard from "components/DocumentCard";
+// import useArcanaStorage from "use/arcanaStorage.js";
+// import { FaUpload } from "react-icons/fa";
+import Web3 from 'web3'
+import { StorageProvider } from '@arcana/storage';
 
+// const dAppStorageProvider = StorageProvider.init({
+//   appAddress: "a693Ae21E46902C991A95ac6E3AE88F3B387B278", // Get App Address via Dashboard after registering and configuring dApp
+//   // email: user_email_string, //optional
+//   // chainId: 100, //optional
+//   provider: window.ethereum //optional
+//   // use 'window.arcana.provider', if using the Auth SDK
+//   // or use 'window.ethereum' if using a third-party wallet
+// });
 
-class Profile extends React.Component {
-  componentDidMount() {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    this.refs.main.scrollTop = 0;
+function Profile(props)
+ {
+
+  if(window.ethereum){
+    window.web3 = new Web3(window.ethereum);
+    console.log(window.web3);
   }
-  render() {
-    return (
-      <>
+
+  const [file, setFile] = useState(null);
+
+  const inputFilePropertyRef = useRef(null);
+  // const {upload}=useArcanaStorage();
+  // const name="";
+  const handleFileUpload = event => {
+    event.preventDefault()
+    
+    const file = event.target.files[0]
+    console.log(file.name, "Captured...");
+    const reader = new window.FileReader()
+    
+    reader.readAsArrayBuffer(file);
+    
+    reader.onloadend = () => {
+      const buffer = Buffer(reader.result);
+      console.log('buffer', buffer);
+      setFile(buffer);
+    }
+    
+  };
+
+ 
+
+  // dAppStorageProvider.upload(file, {
+  //   // onProgress: (bytesUploaded, bytesTotal) => {
+  //   //    console.log('Progress:', ((bytesUploaded / bytesTotal) * 100).toFixed(2), '%')
+  //   // }
+  // }).then((did) => console.log('File successfully uploaded. DID:', did)).catch(e => console.error(e));
+
+  
+  return (
+    <>
         <LoginNavbar />
-        <main className="profile-page" ref="main">
+        <main className="profile-page">
         <section className="section-profile-cover section-shaped">
             {/* Circles background */}
             <div className="shape shape-style-1 shape-default alpha-4">
@@ -78,15 +122,29 @@ class Profile extends React.Component {
                         >
                           Connect
                         </Button> */}
-                        <Button
+                                                                       
+
+                         <React.Fragment>
+        <input
+          ref={inputFilePropertyRef}
+          onChange={handleFileUpload}
+          type="file"
+          style={{ display: "none" }}
+          // multiple={false}
+        />
+        {/* <button onClick={() => this.refs.fileInput.click()}>Upload File</button> */}
+        <Button
                           className="float-right"
                           color="info"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
+                          // href="#pablo"
+                          onClick={() =>inputFilePropertyRef.current.click()}
                           size="sm"
                         >
                           Upload
                         </Button>
+      </React.Fragment>
+                        
+                        
                       </div>
                     </Col>
                     <Col className="order-lg-1" lg="4">
@@ -143,8 +201,7 @@ class Profile extends React.Component {
         </main>
         <SimpleFooter />
       </>
-    );
-  }
+  )
 }
 
-export default Profile;
+export default Profile
