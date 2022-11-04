@@ -22,7 +22,7 @@ import {
 } from "reactstrap";
 
 import web3modal from '../../web3modal.ts'
-// import Web3 from 'web3'
+import Web3 from 'web3'
 import uauthOptions from '../../web3modal.ts'
 import UAuth from '@uauth/js'
 const uauth=new UAuth({
@@ -53,18 +53,22 @@ const uauth=new UAuth({
 // // console.log(account)
 // }
 const handleLogin = async () => {
-    try {
-      const authorization = await uauth.loginWithPopup()
-      console.log("Logged in")
-      console.log(authorization)
-      const walletname=authorization.idToken.wallet_address;
-      const domainName=authorization.idToken.sub;
-  console.log("wallet address: ",walletname)
-  console.log("Domain name: ",domainName)
-    } catch (error) {
-      console.error(error)
+  try {
+    const authorization = await uauth.loginWithPopup()
+    console.log("Logged in")
+    console.log(authorization)
+    const walletname=authorization.idToken.wallet_address;
+    const domainName=authorization.idToken.sub;
+    console.log("wallet address: ",walletname)
+    console.log("Domain name: ",domainName)
+    if(window.ethereum){
+      window.web3 = new Web3(window.ethereum);
+      console.log(window.web3);
     }
+  } catch (error) {
+    console.error(error)
   }
+}
 
 // async function handleLogout() {
 //   if (web3modal.cachedProvider === 'custom-uauth') {

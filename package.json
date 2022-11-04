@@ -55,14 +55,15 @@
     "headroom.js": "0.12.0",
     "moment": "2.29.4",
     "nouislider": "14.1.1",
-    "react": "^18.1.0",
+    "react": ">=16.0.0",
     "react-datetime": "3.1.1",
-    "react-dom": "^18.1.0",
+    "react-dom": ">=16.0.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "5.1.2",
     "react-scripts": "5.0.1",
     "reactstrap": "8.4.1",
     "sass": "1.53.0",
+    "web3": "^1.8.0",
     "web3modal": "^1.9.9"
   },
   "peerDependencies": {
