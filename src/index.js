@@ -11,6 +11,7 @@ import Landing from "views/examples/Landing.js";
 import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
+import Shared from "views/examples/Shared";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -37,6 +38,11 @@ root.render(
         path="/register-page"
         exact
         render={(props) => <Register {...props} />}
+      />
+      <Route
+        path="/shared-with-me"
+        exact
+        render={(props) => <Shared {...props} />}
       />
       <Redirect to="/" />
     </Switch>

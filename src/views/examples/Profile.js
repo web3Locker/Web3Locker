@@ -110,6 +110,14 @@ function Profile(props)
                           Upload
                         </Button>
       </React.Fragment>
+                          <Button
+                    className="float-left"
+                    color="info"
+                    href="/shared-with-me"
+                    size="sm"
+                    >
+                    Shared with me
+                    </Button>
                         
                         
                       </div>
