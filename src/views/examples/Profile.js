@@ -7,38 +7,23 @@ import { Button, Card, Container, Row, Col } from "reactstrap";
 import LoginNavbar from "components/Navbars/LoginNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 import DocumentCard from "components/DocumentCard";
-// import useArcanaStorage from "use/arcanaStorage.js";
-// import { FaUpload } from "react-icons/fa";
+
 import Web3 from 'web3'
-import { StorageProvider } from '@arcana/storage';
 
-const dAppStorageProvider = StorageProvider.init({
-  appAddress: "a693Ae21E46902C991A95ac6E3AE88F3B387B278", // Get App Address via Dashboard after registering and configuring dApp
-  // email: user_email_string, //optional
-  // chainId: 100, //optional
-  provider: window.ethereum //optional
-  // use 'window.arcana.provider', if using the Auth SDK
-  // or use 'window.ethereum' if using a third-party wallet
-  
-});
-
-
-
+import StorageService from "Storage/storage";
 
 
 
 function Profile(props)
  {
 
-  
-
-  const [filex, setFile] = useState(null);
+  StorageService.init();
 
   const inputFilePropertyRef = useRef(null);
-  // const {upload}=useArcanaStorage();
-  // const name="";
+
   const handleFileUpload = async event => {
     event.preventDefault()
+    
     
     const file = event.target.files[0]
     console.log(file.name, "Captured...");
@@ -47,26 +32,13 @@ function Profile(props)
     reader.readAsArrayBuffer(file);
     
     reader.onloadend = () => {
-      const buffer = Buffer(reader.result);
-      console.log('buffer', buffer);
-      setFile(buffer);
-    }
-    
-    if(window.ethereum){
-      window.web3 = new Web3(window.ethereum);
-      console.log(window.web3);
-    }
 
-    let did = await dAppStorageProvider.upload(filex)
-    console.log(did);
+      const blob = new Blob([reader.result]);
+      console.log(blob);
+      StorageService.upload(blob);
+    }
   };
 
- 
-
-  
-  
-
-  
   return (
     <>
         <LoginNavbar />
@@ -120,17 +92,6 @@ function Profile(props)
                       lg="4"
                     >
                       <div className="card-profile-actions py-0 mt-lg-0">
-                        {/* <Button
-                          className="mr-4"
-                          color="info"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                          size="sm"
-                        >
-                          Connect
-                        </Button> */}
-                                                                       
-
                          <React.Fragment>
         <input
           ref={inputFilePropertyRef}
@@ -139,7 +100,6 @@ function Profile(props)
           style={{ display: "none" }}
           // multiple={false}
         />
-        {/* <button onClick={() => this.refs.fileInput.click()}>Upload File</button> */}
         <Button
                           className="float-right"
                           color="info"
