@@ -12,29 +12,32 @@ import DocumentCard from "components/DocumentCard";
 import Web3 from 'web3'
 import { StorageProvider } from '@arcana/storage';
 
-// const dAppStorageProvider = StorageProvider.init({
-//   appAddress: "a693Ae21E46902C991A95ac6E3AE88F3B387B278", // Get App Address via Dashboard after registering and configuring dApp
-//   // email: user_email_string, //optional
-//   // chainId: 100, //optional
-//   provider: window.ethereum //optional
-//   // use 'window.arcana.provider', if using the Auth SDK
-//   // or use 'window.ethereum' if using a third-party wallet
-// });
+const dAppStorageProvider = StorageProvider.init({
+  appAddress: "a693Ae21E46902C991A95ac6E3AE88F3B387B278", // Get App Address via Dashboard after registering and configuring dApp
+  // email: user_email_string, //optional
+  // chainId: 100, //optional
+  provider: window.ethereum //optional
+  // use 'window.arcana.provider', if using the Auth SDK
+  // or use 'window.ethereum' if using a third-party wallet
+  
+});
+
+
+
+
+
 
 function Profile(props)
  {
 
-  if(window.ethereum){
-    window.web3 = new Web3(window.ethereum);
-    console.log(window.web3);
-  }
+  
 
-  const [file, setFile] = useState(null);
+  const [filex, setFile] = useState(null);
 
   const inputFilePropertyRef = useRef(null);
   // const {upload}=useArcanaStorage();
   // const name="";
-  const handleFileUpload = event => {
+  const handleFileUpload = async event => {
     event.preventDefault()
     
     const file = event.target.files[0]
@@ -49,15 +52,19 @@ function Profile(props)
       setFile(buffer);
     }
     
+    if(window.ethereum){
+      window.web3 = new Web3(window.ethereum);
+      console.log(window.web3);
+    }
+
+    let did = await dAppStorageProvider.upload(filex)
+    console.log(did);
   };
 
  
 
-  // dAppStorageProvider.upload(file, {
-  //   // onProgress: (bytesUploaded, bytesTotal) => {
-  //   //    console.log('Progress:', ((bytesUploaded / bytesTotal) * 100).toFixed(2), '%')
-  //   // }
-  // }).then((did) => console.log('File successfully uploaded. DID:', did)).catch(e => console.error(e));
+  
+  
 
   
   return (
@@ -189,7 +196,7 @@ function Profile(props)
                         <p>
                           <br></br>
                           {/* <span>INSERT CARDS HERE</span> */}
-                          <DocumentCard/>
+                          {/* <DocumentCard/> */}
                         </p>
                       </Col>
                     </Row>

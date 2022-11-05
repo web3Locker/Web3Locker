@@ -6,7 +6,6 @@ import {HiDocument} from 'react-icons/hi'
 function DocumentCard(props) {
   return (
     <>
-    <div>
     <Container className="container-lg">
             <Row>
                 <Row>
@@ -23,9 +22,8 @@ function DocumentCard(props) {
                 </Row>
             </Row>
           </Container>
-    </div>
     </>
   )
 }
 
-export default DocumentCard
+export default DocumentCard;
