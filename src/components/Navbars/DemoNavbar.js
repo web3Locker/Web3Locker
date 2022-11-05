@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Headroom from "headroom.js";
-import { useNavigate } from "react-router-dom";
+// import Headroom from "headroom.js";
+// import { useNavigate } from "react-router-dom";
 import {
   Button,
   UncontrolledCollapse,
-  DropdownMenu,
-  DropdownItem,
-  DropdownToggle,
-  UncontrolledDropdown,
-  Media,
+  // DropdownMenu,
+  // DropdownItem,
+  // DropdownToggle,
+  // UncontrolledDropdown,
+  // Media,
   NavbarBrand,
   Navbar,
   NavItem,
@@ -21,14 +21,14 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
-import web3modal from '../../web3modal.ts'
+// import web3modal from '../../web3modal.ts'
 import Web3 from 'web3'
-import uauthOptions from '../../web3modal.ts'
+// import uauthOptions from '../../web3modal.ts'
 import UAuth from '@uauth/js'
 const uauth=new UAuth({
     clientID: "671f4386-a936-4c08-bd01-fe74f4203f9e",
-  redirectUri: "http://localhost:3000",
-  scope: "openid wallet"
+    redirectUri: "http://localhost:3000",
+    scope: "openid wallet"
 })
 
 // async function handleLogin() {
@@ -65,6 +65,9 @@ const handleLogin = async () => {
       window.web3 = new Web3(window.ethereum);
       console.log(window.web3);
     }
+    
+    window.location.href="/profile-page"
+
   } catch (error) {
     console.error(error)
   }
@@ -84,7 +87,7 @@ function DemoNavbar(props){
   // }
 
   const [collapseClasses,setCollapseClasses] = useState("");
-  const [collapseOpen, setCollapseOpen] = useState(false);
+  // const [collapseOpen, setCollapseOpen] = useState(false);
 
   const onExiting = () => {
     setCollapseClasses("collapsing-out");
@@ -157,7 +160,7 @@ return (
                     className="btn-neutral btn-icon"
                     color="default"
                     onClick={handleLogin}
-                    // href="/login-page"
+                    // href="/profile-page"
                     // target="_blank"
                 >
 
