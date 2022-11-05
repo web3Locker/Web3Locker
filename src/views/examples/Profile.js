@@ -11,15 +11,30 @@ import DocumentCard from "components/DocumentCard";
 import Web3 from 'web3'
 
 import StorageService from "Storage/storage";
+import { AccessTypeEnum } from '@arcana/storage';
 
 
 
 function Profile(props)
  {
+  const [uploadTotal, setUploadTotal] = useState();
+  // setUploadList(StorageService.MyFiles().length);
+ 
+  // var x;
 
-  StorageService.init();
+  StorageService.init().then(async ()=>{
+    // x = await StorageService.MyFiles();
+    // console.log('Total Files',x);
+    setUploadTotal(await StorageService.TotalFiles()); // Add MyFiles() here.
+  })
 
   const inputFilePropertyRef = useRef(null);
+  // const [uploadList, setUploadList] = useState();
+
+  // const EthList = await StorageService.MyFiles();
+
+  // Total().then(value => console.log("ABCD",value));
+  
 
   const handleFileUpload = async event => {
     event.preventDefault()
@@ -37,6 +52,8 @@ function Profile(props)
       console.log(blob);
       StorageService.upload(blob);
     }
+
+    
   };
 
   return (
@@ -118,6 +135,16 @@ function Profile(props)
                     >
                     Shared with me
                     </Button>
+
+                    <Button
+                    className="float-left"
+                    color="info"
+                    // onClick={() => }
+                    // {...setUploadList(StorageService.MyFiles().length)}
+                    size="sm"
+                    >
+                    Fetch Files
+                    </Button>
                         
                         
                       </div>
@@ -125,7 +152,7 @@ function Profile(props)
                     <Col className="order-lg-1" lg="4">
                       <div className="card-profile-stats d-flex justify-content-center">
                         <div>
-                          <span className="heading">22</span>
+                          <span className="heading">{uploadTotal}</span>
                           <span className="description">Total uploads</span>
                         </div>
                         {/* <div>

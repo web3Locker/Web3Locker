@@ -1,16 +1,19 @@
 import SimpleFooter from "components/Footers/SimpleFooter";
-import DemoNavbar from "components/Navbars/DemoNavbar";
+import LoginNavbar from "components/Navbars/LoginNavbar.js";
 
 function Shared() {
     return(
+        <>
+        
         <div>
-            <DemoNavbar />
+            <LoginNavbar />
            
 
-            <h1>Hello World</h1>
+            
             
             <SimpleFooter />
         </div>
+        </>
     );
 }
 
