@@ -32,17 +32,13 @@ import classnames from "classnames";
 // core components
 import LoginNavbar from "components/Navbars/LoginNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
-import DocumentCard from "components/DocumentCard";
 import { FaShare, FaFileDownload } from "react-icons/fa";
 import { HiDocument } from "react-icons/hi";
-
-import Web3 from "web3";
-
 import { StorageProvider } from "@arcana/storage";
 import { AccessTypeEnum } from "@arcana/storage";
 
 function Profile(props) {
-  //STORAGE
+  //STORAGE********************************************************************************************************************
 
   let dAppStorageProvider;
   async function init() {
@@ -91,13 +87,18 @@ function Profile(props) {
   async function Download(did) {
     await init();
     await dAppStorageProvider.download(did);
-    console.log("Downloaded",did);
+    console.log("Downloaded", did);
   }
-  //********************************************** */
+  //***************************************************************************************************************************/
 
-  // const [uploadTotal, setUploadTotal] = useState();
   const [Files, setFiles] = useState([]);
   const [sharedFiles, setSharedFiles] = useState([]);
+  const [state, setToggleState] = useState(1);
+  const [modal, setModalState] = useState(false);
+  const [ok, setOk] = useState(false);
+  const [okShare, setOkShare] = useState(false);
+  const [initialize, setInitialize] = useState(true);
+  const [shareAddress, setShareAddress] = useState("");
 
   const toggleNavs = (e, state, index) => {
     e.preventDefault();
@@ -108,52 +109,25 @@ function Profile(props) {
     setModalState(!modal);
   };
 
-  const [state, setToggleState] = useState(1);
-  const [modal, setModalState] = useState(false);
-  const [ok, setOk] = useState(false);
-  const [okShare, setOkShare] = useState(false);
-  const [initialize, setInitialize] = useState(true);
-  const [shareAddress, setShareAddress] = useState("");
-  // setUploadList(StorageService.MyFiles().length);
-
-  // var x;
   if (initialize) {
     init().then(async () => {
-      // x = await StorageService.MyFiles();
-      // console.log('Total Files',x);
       await MyFiles().then(() => {
         setOk(true);
         setInitialize(false);
-
-        // console.log("Files - ",Files);
-        // console.log("File Length", Files.length)
       });
 
       await SharedWithMe().then(() => {
         setOkShare(true);
       });
-      // setSharedFiles(SharedWithMe());
-      //   console.log("Shared Files", sharedFiles);
-      // Add MyFiles() here.
-      // console.log("Files - ",Files);
-      // console.log("File Length", Files.length)
     });
   }
 
   const inputFilePropertyRef = useRef(null);
-  // const [uploadList, setUploadList] = useState();
-
-  // const EthList = await StorageService.MyFiles();
-
-  // Total().then(value => console.log("ABCD",value));
-
   const handleFileUpload = async (event) => {
     event.preventDefault();
-
     const file = event.target.files[0];
     console.log(file.name, "Captured...");
     const reader = new window.FileReader();
-
     reader.readAsArrayBuffer(file);
 
     reader.onloadend = () => {
@@ -231,24 +205,6 @@ function Profile(props) {
                           Upload
                         </Button>
                       </React.Fragment>
-                      <Button
-                        className="float-left"
-                        color="info"
-                        href="/shared-with-me"
-                        size="sm"
-                      >
-                        Shared with me
-                      </Button>
-
-                      <Button
-                        className="float-left"
-                        color="info"
-                        // onClick={() => }
-                        // {...setUploadList(StorageService.MyFiles().length)}
-                        size="sm"
-                      >
-                        Fetch Files
-                      </Button>
                     </div>
                   </Col>
                   <Col className="order-lg-1" lg="4">
@@ -257,44 +213,17 @@ function Profile(props) {
                         <span className="heading">{Files.length}</span>
                         <span className="description">Total uploads</span>
                       </div>
-                      {/* <div>
-                          <span className="heading">10</span>
-                          <span className="description">Photos</span>
-                        </div>
-                        <div>
-                          <span className="heading">89</span>
-                          <span className="description">Comments</span>
-                        </div> */}
                     </div>
                   </Col>
                 </Row>
                 <div className="text-center mt-5">
-                  <h3>
-                    Jessica Jones {/*" "*/}
-                    {/* <span className="font-weight-light">, 27</span> */}
-                  </h3>
-                  {/* <div className="h6 font-weight-300">
-                      <i className="ni location_pin mr-2" />
-                      Bucharest, Romania
-                    </div> */}
-                  {/* <div className="h6 mt-4">
-                      <i className="ni business_briefcase-24 mr-2" />
-                      Solution Manager - Creative Tim Officer
-                    </div>
-                    <div>
-                      <i className="ni education_hat mr-2" />
-                      University of Computer Science
-                    </div> */}
+                  <h3>Jessica Jones</h3>
                 </div>
                 <div className="mt-5 py-5 border-top text-center">
                   <Row className="justify-content-center">
                     <Col lg="9">
                       <span>UPLOADS</span>
-                      <p>
-                        <br></br>
-                        {/* <span>INSERT CARDS HERE</span> */}
-                        {/* <DocumentCard/> */}
-
+                      <div>
                         <TabContent activeTab={"iconTabs" + state}>
                           <TabPane tabId="iconTabs1">
                             <div className="mt-1 py-4 text-center">
@@ -310,7 +239,6 @@ function Profile(props) {
                                                 Files.map((e, key) => (
                                                   <Col lg="6">
                                                     <br />
-                                                    <br />
                                                     <Card
                                                       className="card-lift--hover shadow border-0"
                                                       key={key}
@@ -318,40 +246,16 @@ function Profile(props) {
                                                         "Hello"
                                                       )}
                                                     >
-                                                      {/* <CardBody>
-                                                  <h6>Contract Address</h6>
-                                                  <a>
-                                                    {nftList[key].token_address}
-                                                  </a>
-                                                  <h6>Name</h6>{" "}
-                                                  <a>{nftList[key].name}</a>
-                                                  <h6>Owner</h6>{" "}
-                                                  <a>{nftList[key].owner_of}</a>
-                                                </CardBody> */}
                                                       <CardBody>
-                                                        {/* <span
-                                                          style={{
-                                                            float: "left",
-                                                          }}
-                                                        >
-                                                          Doc1
-                                                        </span> */}
                                                         <span>
                                                           {Files[key].did}
                                                         </span>
-                                                        <span
+                                                        {/* <span
                                                           className="options"
                                                           style={{
                                                             float: "right",
                                                           }}
-                                                        >
-                                                          {/* <a
-                                                            href="#"
-                                                            className="viewDoc"
-                                                          >
-                                                            <HiDocument />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp; */}
+                                                        > 
                                                           <a
                                                             className="Share"
                                                             href="#"
@@ -363,18 +267,11 @@ function Profile(props) {
                                                                 )
                                                               }
                                                             >
-                                                              <FaShare />
                                                             </button>
                                                           </a>
-                                                          {/* &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Download"
-                                                            href="#"
-                                                          >
-                                                            <FaFileDownload />
-                                                          </a> */}
-                                                        </span>
+                                                        </span> */}
                                                       </CardBody>
+
                                                       {/* Form Modal */}
 
                                                       <Button
@@ -467,206 +364,13 @@ function Profile(props) {
                               </Row>
                             </div>
                           </TabPane>
-                          <TabPane tabId="iconTabs2">
-                            <div className="mt-1 py-4 text-center">
-                              <Row className="justify-content-center">
-                                <Col lg="9">
-                                  {Files.length > 0 && (
-                                    <section>
-                                      <Container>
-                                        <Row className="justify-content-center">
-                                          <Col lg="12">
-                                            <Row className="row-grid">
-                                              {ok &&
-                                                Files.map((e, key) => (
-                                                  <Col lg="6">
-                                                    <br />
-                                                    <br />
-                                                    <Card
-                                                      className="card-lift--hover shadow border-0"
-                                                      onClick={console.log(
-                                                        Files[key]
-                                                      )}
-                                                    >
-                                                      <CardBody>
-                                                        <span
-                                                          style={{
-                                                            float: "left",
-                                                          }}
-                                                        >
-                                                          Doc1
-                                                        </span>
-                                                        <span>
-                                                          {Files[key].did}
-                                                        </span>
-                                                        <span
-                                                          className="options"
-                                                          style={{
-                                                            float: "right",
-                                                          }}
-                                                        >
-                                                          <a
-                                                            href="#"
-                                                            className="viewDoc"
-                                                          >
-                                                            <HiDocument />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Share"
-                                                            href="#"
-                                                          >
-                                                            <FaShare />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Download"
-                                                            href="#"
-                                                          >
-                                                            <FaFileDownload />
-                                                          </a>
-                                                        </span>
-                                                      </CardBody>
-
-                                                      {Files[key].did && (
-                                                        <Button
-                                                          block
-                                                          color="default"
-                                                          type="button"
-                                                          className="mr-4"
-                                                          onClick={() =>
-                                                            console.log("xyz")
-                                                          }
-                                                        >
-                                                          Reject Fetch Request
-                                                        </Button>
-                                                      )}
-                                                    </Card>
-                                                  </Col>
-                                                ))}
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Container>
-                                    </section>
-                                  )}
-                                </Col>
-                              </Row>
-                            </div>
-                          </TabPane>
-                          <TabPane tabId="iconTabs3">
-                            <div className="mt-1 py-4 text-center">
-                              <Row className="justify-content-center">
-                                <Col lg="9">
-                                  {Files.length > 0 && (
-                                    <section>
-                                      <Container>
-                                        <Row className="justify-content-center">
-                                          <Col lg="12">
-                                            <Row className="row-grid">
-                                              {ok &&
-                                                Files.map((e, key) => (
-                                                  <Col lg="6">
-                                                    <br />
-                                                    <br />
-                                                    <Card
-                                                      className="card-lift--hover shadow border-0"
-                                                      onClick={console.log(
-                                                        Files[key].did
-                                                      )}
-                                                    >
-                                                      <CardBody>
-                                                        <span
-                                                          style={{
-                                                            float: "left",
-                                                          }}
-                                                        >
-                                                          Doc1
-                                                        </span>
-                                                        <span>
-                                                          {Files[key].did}
-                                                        </span>
-                                                        <span
-                                                          className="options"
-                                                          style={{
-                                                            float: "right",
-                                                          }}
-                                                        >
-                                                          <a
-                                                            href="#"
-                                                            className="viewDoc"
-                                                          >
-                                                            <HiDocument />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Share"
-                                                            href="#"
-                                                          >
-                                                            <FaShare />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Download"
-                                                            href="#"
-                                                          >
-                                                            <FaFileDownload />
-                                                          </a>
-                                                        </span>
-                                                      </CardBody>
-                                                      {!Files[key].did && (
-                                                        <Button
-                                                          block
-                                                          color="default"
-                                                          type="button"
-                                                          className="mr-4"
-                                                          onClick={() =>
-                                                            console.log(
-                                                              "Clicked"
-                                                            )
-                                                          }
-                                                        >
-                                                          Init Fetch Request
-                                                        </Button>
-                                                      )}
-
-                                                      {Files[key].did && (
-                                                        <Button
-                                                          block
-                                                          color="default"
-                                                          type="button"
-                                                          className="mr-4"
-                                                          onClick={() =>
-                                                            console.log("abc")
-                                                          }
-                                                        >
-                                                          Claim NFT
-                                                        </Button>
-                                                      )}
-                                                    </Card>
-                                                  </Col>
-                                                ))}
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Container>
-                                    </section>
-                                  )}
-                                </Col>
-                              </Row>
-                            </div>
-                          </TabPane>
                         </TabContent>
-                      </p>
+                      </div>
                     </Col>
 
                     <Col lg="9">
                       <span>Shared With Me</span>
-                      <p>
-                        <br></br>
-                        {/* <span>INSERT CARDS HERE</span> */}
-                        {/* <DocumentCard/> */}
-
+                      <div>
                         <TabContent activeTab={"iconTabs" + state}>
                           <TabPane tabId="iconTabs1">
                             <div className="mt-1 py-4 text-center">
@@ -678,10 +382,9 @@ function Profile(props) {
                                         <Row className="justify-content-center">
                                           <Col lg="12">
                                             <Row className="row-grid">
-                                              {ok &&
+                                              {okShare &&
                                                 sharedFiles.map((e, key) => (
                                                   <Col lg="6">
-                                                    <br />
                                                     <br />
                                                     <Card
                                                       className="card-lift--hover shadow border-0"
@@ -690,40 +393,16 @@ function Profile(props) {
                                                         "Hello"
                                                       )}
                                                     >
-                                                      {/* <CardBody>
-                                                  <h6>Contract Address</h6>
-                                                  <a>
-                                                    {nftList[key].token_address}
-                                                  </a>
-                                                  <h6>Name</h6>{" "}
-                                                  <a>{nftList[key].name}</a>
-                                                  <h6>Owner</h6>{" "}
-                                                  <a>{nftList[key].owner_of}</a>
-                                                </CardBody> */}
                                                       <CardBody>
-                                                        {/* <span
-                                                          style={{
-                                                            float: "left",
-                                                          }}
-                                                        >
-                                                          Doc1
-                                                        </span> */}
                                                         <span>
                                                           {sharedFiles[key].did}
                                                         </span>
-                                                        <span
+                                                        {/* <span
                                                           className="options"
                                                           style={{
                                                             float: "right",
                                                           }}
                                                         >
-                                                          {/* <a
-                                                            href="#"
-                                                            className="viewDoc"
-                                                          >
-                                                            <HiDocument />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp; */}
                                                           <a
                                                             className="Share"
                                                             href="#"
@@ -736,14 +415,7 @@ function Profile(props) {
                                                               <FaShare />
                                                             </button>
                                                           </a>
-                                                          {/* &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Download"
-                                                            href="#"
-                                                          >
-                                                            <FaFileDownload />
-                                                          </a> */}
-                                                        </span>
+                                                        </span> */}
                                                       </CardBody>
                                                       {/* Form Modal */}
 
@@ -752,264 +424,14 @@ function Profile(props) {
                                                         color="default"
                                                         type="button"
                                                         className="mr-4"
-                                                        onClick={()=>Download(sharedFiles[key].did)}
+                                                        onClick={() =>
+                                                          Download(
+                                                            sharedFiles[key].did
+                                                          )
+                                                        }
                                                       >
                                                         Download
                                                       </Button>
-                                                      <Modal
-                                                        className="modal-dialog-centered"
-                                                        size="sm"
-                                                        isOpen={modal}
-                                                        toggle={toggleModal}
-                                                        key={key}
-                                                      >
-                                                        <div className="modal-body p-0">
-                                                          <Card className="bg-secondary shadow border-0">
-                                                            <CardBody className="px-lg-5 py-lg-5">
-                                                              <div className="text-center text-muted mb-4">
-                                                                <small>
-                                                                  Set Address of
-                                                                  the Receiver
-                                                                </small>
-                                                              </div>
-                                                              <Form role="form">
-                                                                <FormGroup
-                                                                  className={classnames(
-                                                                    "mb-3"
-                                                                  )}
-                                                                >
-                                                                  <InputGroup className="input-group-alternative">
-                                                                    <InputGroupAddon addonType="prepend">
-                                                                      <InputGroupText>
-                                                                        <i className="ni ni-text-83" />
-                                                                      </InputGroupText>
-                                                                    </InputGroupAddon>
-                                                                    <Input
-                                                                      placeholder="Address"
-                                                                      type="text"
-                                                                      // value={
-                                                                      //   shareAddress
-                                                                      // }
-                                                                      onChange={(
-                                                                        e
-                                                                      ) =>
-                                                                        SharedWithMe()
-                                                                      }
-                                                                    />
-                                                                  </InputGroup>
-                                                                </FormGroup>
-                                                                <div className="text-center">
-                                                                  <Button
-                                                                    className="my-4"
-                                                                    color="primary"
-                                                                    type="button"
-                                                                    onClick={() =>
-                                                                      Share(
-                                                                        Files[
-                                                                          key
-                                                                        ].did,
-                                                                        shareAddress
-                                                                      )
-                                                                    }
-                                                                  >
-                                                                    Share
-                                                                  </Button>
-                                                                </div>
-                                                              </Form>
-                                                            </CardBody>
-                                                          </Card>
-                                                        </div>
-                                                      </Modal>
-                                                    </Card>
-                                                  </Col>
-                                                ))}
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Container>
-                                    </section>
-                                  )}
-                                </Col>
-                              </Row>
-                            </div>
-                          </TabPane>
-                          <TabPane tabId="iconTabs2">
-                            <div className="mt-1 py-4 text-center">
-                              <Row className="justify-content-center">
-                                <Col lg="9">
-                                  {sharedFiles.length > 0 && (
-                                    <section>
-                                      <Container>
-                                        <Row className="justify-content-center">
-                                          <Col lg="12">
-                                            <Row className="row-grid">
-                                              {ok &&
-                                                sharedFiles.map((e, key) => (
-                                                  <Col lg="6">
-                                                    <br />
-                                                    <br />
-                                                    <Card
-                                                      className="card-lift--hover shadow border-0"
-                                                      onClick={console.log(
-                                                        sharedFiles[key]
-                                                      )}
-                                                    >
-                                                      <CardBody>
-                                                        <span
-                                                          style={{
-                                                            float: "left",
-                                                          }}
-                                                        >
-                                                          Doc1
-                                                        </span>
-                                                        <span>
-                                                          {sharedFiles[key].did}
-                                                        </span>
-                                                        <span
-                                                          className="options"
-                                                          style={{
-                                                            float: "right",
-                                                          }}
-                                                        >
-                                                          <a
-                                                            href="#"
-                                                            className="viewDoc"
-                                                          >
-                                                            <HiDocument />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Share"
-                                                            href="#"
-                                                          >
-                                                            <FaShare />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Download"
-                                                            href="#"
-                                                          >
-                                                            <FaFileDownload />
-                                                          </a>
-                                                        </span>
-                                                      </CardBody>
-
-                                                      {sharedFiles[key].did && (
-                                                        <Button
-                                                          block
-                                                          color="default"
-                                                          type="button"
-                                                          className="mr-4"
-                                                          onClick={() =>
-                                                            console.log("xyz")
-                                                          }
-                                                        >
-                                                          Reject Fetch Request
-                                                        </Button>
-                                                      )}
-                                                    </Card>
-                                                  </Col>
-                                                ))}
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Container>
-                                    </section>
-                                  )}
-                                </Col>
-                              </Row>
-                            </div>
-                          </TabPane>
-                          <TabPane tabId="iconTabs3">
-                            <div className="mt-1 py-4 text-center">
-                              <Row className="justify-content-center">
-                                <Col lg="9">
-                                  {sharedFiles.length > 0 && (
-                                    <section>
-                                      <Container>
-                                        <Row className="justify-content-center">
-                                          <Col lg="12">
-                                            <Row className="row-grid">
-                                              {ok &&
-                                                sharedFiles.map((e, key) => (
-                                                  <Col lg="6">
-                                                    <br />
-                                                    <br />
-                                                    <Card
-                                                      className="card-lift--hover shadow border-0"
-                                                      onClick={console.log(
-                                                        sharedFiles[key].did
-                                                      )}
-                                                    >
-                                                      <CardBody>
-                                                        <span
-                                                          style={{
-                                                            float: "left",
-                                                          }}
-                                                        >
-                                                          Doc1
-                                                        </span>
-                                                        <span>
-                                                          {sharedFiles[key].did}
-                                                        </span>
-                                                        <span
-                                                          className="options"
-                                                          style={{
-                                                            float: "right",
-                                                          }}
-                                                        >
-                                                          <a
-                                                            href="#"
-                                                            className="viewDoc"
-                                                          >
-                                                            <HiDocument />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Share"
-                                                            href="#"
-                                                          >
-                                                            <FaShare />
-                                                          </a>
-                                                          &nbsp;&nbsp;&nbsp;
-                                                          <a
-                                                            className="Download"
-                                                            href="#"
-                                                          >
-                                                            <FaFileDownload />
-                                                          </a>
-                                                        </span>
-                                                      </CardBody>
-                                                      {!sharedFiles[key]
-                                                        .did && (
-                                                        <Button
-                                                          block
-                                                          color="default"
-                                                          type="button"
-                                                          className="mr-4"
-                                                          onClick={() =>
-                                                            console.log(
-                                                              "Clicked"
-                                                            )
-                                                          }
-                                                        >
-                                                          Init Fetch Request
-                                                        </Button>
-                                                      )}
-
-                                                      {sharedFiles[key].did && (
-                                                        <Button
-                                                          block
-                                                          color="default"
-                                                          type="button"
-                                                          className="mr-4"
-                                                          onClick={() =>
-                                                            console.log("abc")
-                                                          }
-                                                        >
-                                                          Claim NFT
-                                                        </Button>
-                                                      )}
                                                     </Card>
                                                   </Col>
                                                 ))}
@@ -1024,7 +446,7 @@ function Profile(props) {
                             </div>
                           </TabPane>
                         </TabContent>
-                      </p>
+                      </div>
                     </Col>
                   </Row>
                 </div>
