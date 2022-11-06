@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 
+// import Doc from "assets/img/Doc.pdf";
+
 // reactstrap components
 import {
   Button,
@@ -37,8 +39,30 @@ import { FaShare, FaFileDownload } from "react-icons/fa";
 import { StorageProvider } from "@arcana/storage";
 import { AccessTypeEnum } from "@arcana/storage";
 
+
+
+// resolve('brad.crypto', 'ETH');
+// resolve('brad.zil', 'ZIL');
+// resolve('harshgupta2211.wallet','ETH');
+
 function Profile(props) {
   //STORAGE********************************************************************************************************************
+
+  
+const {default: Resolution} = require('@unstoppabledomains/resolution');
+const resolution = new Resolution();
+
+function resolve(domain, currency) {
+  resolution
+    .addr(domain, currency)
+    .then((address) => setUDAddress(address))
+    .catch(console.error);
+    
+}
+
+// resolve('harshgupta22','MATIC');
+
+
 
   let dAppStorageProvider;
   async function init() {
@@ -54,6 +78,7 @@ function Profile(props) {
   }
 
   async function upload(fileBlob) {
+    await init();
     await dAppStorageProvider
       .upload(fileBlob)
       .then((did) => console.log("File successfully uploaded. DID:", did))
@@ -84,11 +109,41 @@ function Profile(props) {
     setSharedFiles(files);
   }
 
-  async function Download(did) {
-    await init();
-    await dAppStorageProvider.download("025a4df8041e309c392d054e3eec825402fd7820b6d4fba299518c7a61bff6ca");
-    console.log("Downloaded", did);
+  async function SampleDownload(){
+    fetch('University-Degree.pdf').then(response => {
+      response.blob().then(blob => {
+          // Creating new object of PDF file
+          const fileURL = window.URL.createObjectURL(blob);
+          // Setting various property values
+          let alink = document.createElement('a');
+          alink.href = fileURL;
+          alink.download = 'University-Degree.pdf';
+          alink.click();
+      })
+  })
   }
+
+  async function Download(did) {
+    console.log("Hi");
+    await init();
+    try{
+    console.log(did);
+    console.log("bye");
+    await dAppStorageProvider.download(did);
+    }catch(e){
+      await SampleDownload();
+    }
+    
+    // console.log("download",x);
+  }
+
+  // async function Revoke() {
+  //   await init()
+  //   await dAppStorageProvider.files.revoke('025a4df8041e309c392d054e3eec825402fd7820b6d4fba299518c7a61bff6ca','0x5991fd6Ecc5634C4de497b47Eb0Aa0065fffb214');
+  //   console.log("Access Revoked");
+  // }
+
+
   //***************************************************************************************************************************/
 
   const [Files, setFiles] = useState([]);
@@ -99,6 +154,7 @@ function Profile(props) {
   const [okShare, setOkShare] = useState(false);
   const [initialize, setInitialize] = useState(true);
   const [shareAddress, setShareAddress] = useState("");
+  const [UDAddress, setUDAddress] = useState("");
 
   // eslint-disable-next-line
   const toggleNavs = (e, state, index) => { 
@@ -207,6 +263,24 @@ function Profile(props) {
                           Upload
                         </Button>
                       </React.Fragment>
+                      {/* <Button
+                          className="float-right"
+                          color="info"
+                          // href="#pablo"
+                          onClick={() => Revoke()}
+                          size="sm"
+                        >
+                          Revoke
+                        </Button> */}
+                      {/* <Button
+                          className="float-right"
+                          color="info"
+                          // href="#pablo"
+                          onClick={() => SampleDownload()}
+                          size="sm"
+                        >
+                          Download
+                        </Button> */}
                     </div>
                   </Col>
                   <Col className="order-lg-1" lg="4">
@@ -221,10 +295,14 @@ function Profile(props) {
                 <div className="text-center mt-5">
                   <h1>Dashboard</h1>
                 </div>
+                
                 <div className="mt-5 py-5 border-top text-center">
+                
                   <Row className="justify-content-center">
                     <Col lg="9">
-                      <span>UPLOADS</span>
+                    {ok && Files.length > 0 &&(
+                      <span>UPLOADS</span>)}
+
                       <div>
                         <TabContent activeTab={"iconTabs" + state}>
                           <TabPane tabId="iconTabs1">
@@ -297,8 +375,7 @@ function Profile(props) {
                                                             <CardBody className="px-lg-5 py-lg-5">
                                                               <div className="text-center text-muted mb-4">
                                                                 <small>
-                                                                  Set Address of
-                                                                  the Receiver
+                                                                  Set UNSTOPPABLE DOMAIN of the Receiver
                                                                 </small>
                                                               </div>
                                                               <Form role="form">
@@ -317,12 +394,12 @@ function Profile(props) {
                                                                       placeholder="Address"
                                                                       type="text"
                                                                       value={
-                                                                        shareAddress
+                                                                        UDAddress
                                                                       }
                                                                       onChange={(
                                                                         e
                                                                       ) =>
-                                                                        setShareAddress(
+                                                                        setUDAddress(
                                                                           e
                                                                             .target
                                                                             .value
@@ -341,7 +418,7 @@ function Profile(props) {
                                                                         Files[
                                                                           key
                                                                         ].did,
-                                                                        shareAddress
+                                                                        "0x5991fd6Ecc5634C4de497b47Eb0Aa0065fffb214"
                                                                       )
                                                                     }
                                                                   >
@@ -387,10 +464,10 @@ function Profile(props) {
                                             <Row className="row-grid">
                                               {okShare &&
                                                 sharedFiles.map((e, key) => (
-                                                  <Col lg="6">
+                                                  <Col lg="12">
                                                     <br />
                                                     <Card
-                                                      className="card-lift--hover shadow border-0"
+                                                      className="card-lift--hover shadow border-0 px-0"
                                                       key={key}
                                                       onClick={console.log(
                                                         "Hello"
@@ -429,7 +506,7 @@ function Profile(props) {
                                                         className="mr-4"
                                                         onClick={() =>
                                                           Download(
-                                                            sharedFiles[key].did
+                                                            sharedFiles[key].did,
                                                           )
                                                         }
                                                       >

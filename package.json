@@ -17,7 +17,6 @@
     "compile-sass": "sass src/assets/scss/argon-design-system-react.scss src/assets/css/argon-design-system-react.css",
     "minify-sass": "sass src/assets/scss/argon-design-system-react.scss src/assets/css/argon-design-system-react.min.css --style compressed"
   },
-  
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -31,6 +30,7 @@
     "@arcana/storage": "^0.3.16",
     "@uauth/js": "^2.4.0",
     "@uauth/web3modal": "^2.4.0",
+    "@unstoppabledomains/resolution": "^8.3.3",
     "@walletconnect/web3-provider": "^1.8.0",
     "assert": "^2.0.0",
     "bootstrap": "4.3.1",
