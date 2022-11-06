@@ -113,10 +113,6 @@ return (
             <span style={{fontSize: '30px'}} >
             Web3Locker
             </span>
-            {/* <img
-                alt="..."
-                src={require("assets/img/brand/argon-react-white.png")}
-            /> */}
             </NavbarBrand>
             <button className="navbar-toggler" id="navbar_global">
             <span className="navbar-toggler-icon" />

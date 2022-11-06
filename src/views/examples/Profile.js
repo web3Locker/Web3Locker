@@ -179,7 +179,7 @@ function Profile(props) {
                         <img
                           alt="..."
                           className="rounded-circle"
-                          src={require("assets/img/theme/img-1-1200x1000.jpg")}
+                          src={require("assets/img/theme/team-4-800x800.jpg")}
                         />
                       </a>
                     </div>
