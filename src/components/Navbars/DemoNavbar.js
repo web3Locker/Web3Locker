@@ -145,7 +145,7 @@ return (
                 <NavItem>
                 <NavLink
                     className="nav-link-icon"
-                    href="https://github.com/creativetimofficial/argon-design-system-react"
+                    href="https://github.com/web3Locker/web3Locker"
                     id="tooltip112445449"
                     target="_blank"
                 >

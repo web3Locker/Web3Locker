@@ -32,7 +32,7 @@ import classnames from "classnames";
 // core components
 import LoginNavbar from "components/Navbars/LoginNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
-// import { FaShare, FaFileDownload } from "react-icons/fa";
+import { FaShare, FaFileDownload } from "react-icons/fa";
 // import { HiDocument } from "react-icons/hi";
 import { StorageProvider } from "@arcana/storage";
 import { AccessTypeEnum } from "@arcana/storage";
@@ -283,7 +283,7 @@ function Profile(props) {
                                                         className="mr-4"
                                                         onClick={toggleModal}
                                                       >
-                                                        Share
+                                                        Share <FaShare />
                                                       </Button>
                                                       <Modal
                                                         className="modal-dialog-centered"
@@ -433,7 +433,7 @@ function Profile(props) {
                                                           )
                                                         }
                                                       >
-                                                        Download
+                                                        Download <FaFileDownload />
                                                       </Button>
                                                     </Card>
                                                   </Col>
