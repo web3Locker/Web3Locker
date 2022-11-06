@@ -8,9 +8,8 @@ import "assets/scss/argon-design-system-react.scss?v1.1.0";
 
 import Index from "views/Index.js";
 import Landing from "views/examples/Landing.js";
-// import Login from "views/examples/Login.js";
 import Profile from "views/examples/Profile.js";
-// import Register from "views/examples/Register.js";
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

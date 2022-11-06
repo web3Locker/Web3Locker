@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import Headroom from "headroom.js";
-// import { useNavigate } from "react-router-dom";
+
+// reactstrap components
 import {
   Button,
   UncontrolledCollapse,
-  // DropdownMenu,
-  // DropdownItem,
-  // DropdownToggle,
-  // UncontrolledDropdown,
-  // Media,
   NavbarBrand,
   Navbar,
   NavItem,
@@ -21,38 +16,15 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
-// import web3modal from '../../web3modal.ts'
+
 import Web3 from 'web3'
-// import uauthOptions from '../../web3modal.ts'
+
 import UAuth from '@uauth/js'
 const uauth=new UAuth({
     clientID: "671f4386-a936-4c08-bd01-fe74f4203f9e",
     redirectUri: "http://localhost:3000",
     scope: "openid wallet"
 })
-
-// async function handleLogin() {
-//   const provider = await web3modal.connect()
-//   console.log("hello1")
-//   console.log(provider)
-//   const user = new UAuth(uauth).user().then().catch()
-//   console.log("hello2")
-//   console.log("hkvyfiygfiy",user)
-// // const authorization = await uauth.authorization();
-// // const account = uauth.getAuthorizationAccount(authorization);
-// // console.log("hzdfh"+account)
-
-  
-//   const authorization = await uauthOptions.loginWithPopup();
-//   console.log(authorization)
-//   const walletname=authorization.idToken.wallet_address;
-//   console.log("wallet",walletname)
-// // const account = UAuth.getAuthorizationAccount(authorization);
-// // console.log("hello3")
-
-// // console.log(account)
-// }
-
 
 const handleLogin = async () => {
   try {
@@ -84,13 +56,8 @@ const handleLogin = async () => {
 // }
 
 function DemoNavbar(props){
-  // const componentDidMount = () => {
-  //   let headroom = new Headroom(document.getElementById("navbar-main"));
-  //   headroom.init();
-  // }
 
   const [collapseClasses,setCollapseClasses] = useState("");
-  // const [collapseOpen, setCollapseOpen] = useState(false);
 
   const onExiting = () => {
     setCollapseClasses("collapsing-out");

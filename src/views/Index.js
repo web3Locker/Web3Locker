@@ -6,10 +6,7 @@ import SimpleFooter from "components/Footers/SimpleFooter.js";
 
 // index page sections
 import Landing from "../views/examples/Landing.js";
-// import Login from "./IndexSections/Login.js";
 
-
-// import Dashbord from "./IndexSections/Dashbord.js";
 
 class Index extends React.Component {
   componentDidMount() {
@@ -23,9 +20,6 @@ class Index extends React.Component {
         <DemoNavbar />
         <main ref="main">
           <Landing/>
-          {/* <Login/> */}
-
-          {/* <Dashbord/> */}
         </main>
         <SimpleFooter />
       </>
