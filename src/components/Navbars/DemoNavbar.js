@@ -52,6 +52,8 @@ const uauth=new UAuth({
 
 // // console.log(account)
 // }
+
+
 const handleLogin = async () => {
   try {
     const authorization = await uauth.loginWithPopup()
@@ -61,6 +63,7 @@ const handleLogin = async () => {
     const domainName=authorization.idToken.sub;
     console.log("wallet address: ",walletname)
     console.log("Domain name: ",domainName)
+
     if(window.ethereum){
       window.web3 = new Web3(window.ethereum);
       console.log(window.web3);

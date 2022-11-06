@@ -123,6 +123,7 @@ function Profile(props) {
     });
   }
 
+
   const inputFilePropertyRef = useRef(null);
   const handleFileUpload = async (event) => {
     event.preventDefault();
@@ -174,13 +175,13 @@ function Profile(props) {
                 <Row className="justify-content-center">
                   <Col className="order-lg-2" lg="3">
                     <div className="card-profile-image">
-                      {/* <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <a href="#pablo" onClick={(e) => e.preventDefault()}>
                         <img
                           alt="..."
                           className="rounded-circle"
                           src={require("assets/img/theme/img-1-1200x1000.jpg")}
                         />
-                      </a> */}
+                      </a>
                     </div>
                   </Col>
                   <Col
@@ -230,7 +231,7 @@ function Profile(props) {
                             <div className="mt-1 py-4 text-center">
                               <Row className="justify-content-center">
                                 <Col lg="9">
-                                  {Files.length > 0 && (
+                                  {ok && Files.length > 0 && (
                                     <section>
                                       <Container>
                                         <Row className="justify-content-center">

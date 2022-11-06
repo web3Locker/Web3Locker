@@ -376,11 +376,11 @@ class Landing extends React.Component {
               <Row className="row-grid align-items-center">
                 <Col className="order-lg-2 ml-lg-auto" md="6">
                   <div className="position-relative pl-md-5">
-                    <img
-                      alt="..."
-                      className="img-center img-fluid"
-                      src={require("assets/img/ill/ill-2.svg")}
-                    />
+                  <img
+                    alt="..."
+                    className="img-fluid floating"
+                    src={require("assets/img/ill/ill-21.png")}
+                  />
                   </div>
                 </Col>
                 <Col className="order-lg-1" lg="6">
@@ -411,6 +411,61 @@ class Landing extends React.Component {
                       </div>
                     </CardBody>
                   </Card>
+                   {/* box2 */}
+
+                   <Card className="shadow shadow-lg--hover mt-5">
+                    <CardBody>
+                      <div className="d-flex px-3 ">
+                        <div>
+                        <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                        <i className="ni ni-building text-primary" />
+                      </div> 
+                        </div>
+                        <div className="pl-4">
+                          <h5 className="title text-success">
+                         The Arcana Network
+                         </h5>
+                         <p> More convenience to design and integrate the dApp is possible since it is powered by the Arcana Network, which offers total data protection and access control for user data. 
+                         </p>
+                          <a
+                           className="text-success"
+                           href="#pablo"
+                           onClick={(e) => e.preventDefault()}
+                        >
+                          Learn more
+                        </a>
+                       </div>
+                    </div>
+                   </CardBody>
+                 </Card>
+                  {/* box 3 */}
+               
+
+                  <Card className="shadow shadow-lg--hover mt-5">
+                    <CardBody>
+                      <div className="d-flex px-3 ">
+                        <div>
+                        <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                        <i className="ni ni-building text-primary" />
+                      </div> 
+                        </div>
+                        <div className="pl-4">
+                          <h5 className="title text-success">
+                         Login with Unstoppable Domains
+                         </h5>
+                         <p> Thanks to Unstoppable, users have control over login credentials and the developers can avoid hosting database of user information by requesting access when needed. 
+                         </p>
+                          <a
+                           className="text-success"
+                           href="#pablo"
+                           onClick={(e) => e.preventDefault()}
+                        >
+                          Learn more
+                        </a>
+                       </div>
+                    </div>
+                   </CardBody>
+                 </Card>
                   {/* <Card className="shadow shadow-lg--hover mt-5">
                     <CardBody>
                       <div className="d-flex px-3">
