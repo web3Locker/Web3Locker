@@ -24,14 +24,14 @@ function createStorageService() {
 
   async function MyFiles() {
     let files = await dAppStorageProvider.files.list(AccessTypeEnum.MY_FILES);
-    console.log(files);
-    console.log(files.length);
+    // console.log(files);
+    // console.log(files.length);
   }
 
   async function TotalFiles() {
     let files = await dAppStorageProvider.files.list(AccessTypeEnum.MY_FILES);
     return files.length;
-    console.log(files.length);
+    // console.log(files.length);
   }
 
   return{

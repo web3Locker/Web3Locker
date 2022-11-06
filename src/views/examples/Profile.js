@@ -1,33 +1,124 @@
 import React,{useState,useRef} from "react";
 
 // reactstrap components
-import { Button, Card, Container, Row, Col } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardImg,
+  NavItem,
+  NavLink,
+  Nav,
+  TabContent,
+  TabPane,
+  Container,
+  FormGroup,
+  Form,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  Modal,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  Row,
+  Col,
+} from "reactstrap";
+import classnames from "classnames";
 
 // core components
 import LoginNavbar from "components/Navbars/LoginNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
 import DocumentCard from "components/DocumentCard";
+import {FaShare,FaFileDownload} from 'react-icons/fa';
+import {HiDocument} from 'react-icons/hi'
 
 import Web3 from 'web3'
 
-import StorageService from "Storage/storage";
+import { StorageProvider } from '@arcana/storage';
 import { AccessTypeEnum } from '@arcana/storage';
 
 
 
 function Profile(props)
  {
-  const [uploadTotal, setUploadTotal] = useState();
+  //STORAGE
+
+    let dAppStorageProvider;
+    async function init() {
+      
+    if (!dAppStorageProvider) {
+    dAppStorageProvider = await StorageProvider.init({
+    appAddress: "a693Ae21E46902C991A95ac6E3AE88F3B387B278", // Get App Address via Dashboard after registering and configuring dApp
+    provider: window.ethereum, //optional
+    debug: true //optional
+    // use 'window.arcana.provider', if using the Auth SDK
+    // or use 'window.ethereum' if using a third-party wallet
+    });
+    }}
+
+    async function upload(fileBlob) {
+      await dAppStorageProvider.upload(fileBlob)
+      .then((did) => console.log('File successfully uploaded. DID:', did)).catch(e => console.error(e));
+    }
+  
+    async function MyFiles() {
+      let files = await dAppStorageProvider.files.list(AccessTypeEnum.MY_FILES);
+      setFiles(files);
+      // console.log(files);
+      // console.log(files.length);
+    }
+  
+    // async function TotalFiles() {
+    //   let files = await dAppStorageProvider.files.list(AccessTypeEnum.MY_FILES);
+    //   return files.length;
+    //   // console.log(files.length);
+    // }
+
+
+
+
+
+
+  //********************************************** */
+
+  // const [uploadTotal, setUploadTotal] = useState();
+  const[Files,setFiles]=useState([]);
+
+  const toggleNavs = (e, state, index) => {
+    e.preventDefault();
+    setToggleState(index);
+  };
+
+  const toggleModal = () => {
+    setModalState(!modal);
+  };
+
+  const [state, setToggleState] = useState(1);
+  const [modal, setModalState] = useState(false);
+  const [ok, setOk] = useState(false);
+  const [initialize, setInitialize] = useState(true);
   // setUploadList(StorageService.MyFiles().length);
  
   // var x;
-
-  StorageService.init().then(async ()=>{
+    if (initialize) {
+    init().then(async ()=>{
     // x = await StorageService.MyFiles();
     // console.log('Total Files',x);
-    setUploadTotal(await StorageService.TotalFiles()); // Add MyFiles() here.
-  })
+      await MyFiles().then(()=>{
+        setOk(true);
+    })
+    setInitialize(false);
+    // Add MyFiles() here.
+    // console.log("Files - ",Files);
+    // console.log("File Length", Files.length) 
+    })
+  }
 
+    
   const inputFilePropertyRef = useRef(null);
   // const [uploadList, setUploadList] = useState();
 
@@ -50,7 +141,7 @@ function Profile(props)
 
       const blob = new Blob([reader.result]);
       console.log(blob);
-      StorageService.upload(blob);
+      upload(blob);
     }
 
     
@@ -152,7 +243,7 @@ function Profile(props)
                     <Col className="order-lg-1" lg="4">
                       <div className="card-profile-stats d-flex justify-content-center">
                         <div>
-                          <span className="heading">{uploadTotal}</span>
+                          <span className="heading">{Files.length}</span>
                           <span className="description">Total uploads</span>
                         </div>
                         {/* <div>
@@ -192,6 +283,287 @@ function Profile(props)
                           <br></br>
                           {/* <span>INSERT CARDS HERE</span> */}
                           {/* <DocumentCard/> */}
+
+                          
+                          <TabContent activeTab={"iconTabs" + state}>
+
+                    
+                      <TabPane tabId="iconTabs1">
+                        <div className="mt-1 py-4 text-center">
+                          <Row className="justify-content-center">
+                            <Col lg="9">
+                              {Files.length > 0 && (
+                                <section>
+                                  <Container>
+                                    <Row className="justify-content-center">
+                                      <Col lg="12">
+                                        <Row className="row-grid">
+                                          {ok && Files.map((e, key) => (
+                                            <Col lg="6">
+                                              <br />
+                                              <br />
+                                              <Card
+                                                className="card-lift--hover shadow border-0"
+                                                key={key}
+                                                onClick={console.log(
+                                                  "Hello"
+                                                )}
+                                              >
+                                                
+
+                                                {/* <CardBody>
+                                                  <h6>Contract Address</h6>
+                                                  <a>
+                                                    {nftList[key].token_address}
+                                                  </a>
+                                                  <h6>Name</h6>{" "}
+                                                  <a>{nftList[key].name}</a>
+                                                  <h6>Owner</h6>{" "}
+                                                  <a>{nftList[key].owner_of}</a>
+                                                </CardBody> */}
+                                                <CardBody>
+                                                <span style={{float:'left'}}>Doc1</span>
+                                                <span>{Files[key].did}</span>
+                                                <span className="options" style={{float:'right'}}>
+                                                    <a href="#" className="viewDoc"><HiDocument/></a>&nbsp;&nbsp;&nbsp;
+                                                    <a className='Share' href='#'><FaShare/></a>&nbsp;&nbsp;&nbsp;
+                                                    <a className='Download' href='#'><FaFileDownload/></a>
+                                                </span>
+                                                </CardBody>
+                                                {/* Form Modal */}
+
+                                                <Button
+                                                  block
+                                                  color="default"
+                                                  type="button"
+                                                  className="mr-4"
+                                                  onClick={toggleModal}
+                                              
+                                                >
+                                                  Assign Nominee
+                                                </Button>
+                                                <Modal
+                                                  className="modal-dialog-centered"
+                                                  size="sm"
+                                                  isOpen={modal}
+                                                  toggle={toggleModal}
+                                                  key={key}
+                                                >
+                                                  <div className="modal-body p-0">
+                                                    <Card className="bg-secondary shadow border-0">
+                                                      <CardBody className="px-lg-5 py-lg-5">
+                                                        <div className="text-center text-muted mb-4">
+                                                          <small>
+                                                            Set the Nominee
+                                                          </small>
+                                                        </div>
+                                                        <Form role="form">
+                                                          <FormGroup
+                                                            className={classnames(
+                                                              "mb-3"
+                                                            )}
+                                                          >
+                                                            <InputGroup className="input-group-alternative">
+                                                              <InputGroupAddon addonType="prepend">
+                                                                <InputGroupText>
+                                                                  <i className="ni ni-text-83" />
+                                                                </InputGroupText>
+                                                              </InputGroupAddon>
+                                                              <Input
+                                                                placeholder="Nominee Address"
+                                                                type="text"
+                                                                // value={
+                                                                //   nomineeAddress
+                                                                // }
+                                                                onChange={(e) =>
+                                                                  console.log("setShareAddress")
+                                                                  
+                                                                }
+                                                              />
+                                                            </InputGroup>
+                                                          </FormGroup>
+                                                          <div className="text-center">
+                                                            <Button
+                                                              className="my-4"
+                                                              color="primary"
+                                                              type="button"
+                                                              onClick={() => {
+                                                                console.log(
+                                                                  "setNominee"
+                                                                );
+                                                                console.log("aaa");
+                                                                
+                                                              }}
+                                                            >
+                                                              Approve NFT
+                                                            </Button>
+                                                            <Button
+                                                              className="my-4"
+                                                              color="primary"
+                                                              type="button"
+                                                              onClick={() =>
+                                                                console.log("aaa")
+                                                              }
+                                                            >
+                                                              Add Nominee
+                                                            </Button>
+                                                          </div>
+                                                        </Form>
+                                                      </CardBody>
+                                                    </Card>
+                                                  </div>
+                                                </Modal>
+                                              </Card>
+                                            </Col>
+                                          ))}
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Container>
+                                </section>
+                              )}
+                            </Col>
+                          </Row>
+                        </div>
+                      </TabPane>
+                      <TabPane tabId="iconTabs2">
+                        <div className="mt-1 py-4 text-center">
+                          <Row className="justify-content-center">
+                            <Col lg="9">
+                              {Files.length > 0 && (
+                                <section>
+                                  <Container>
+                                    <Row className="justify-content-center">
+                                      <Col lg="12">
+                                        <Row className="row-grid">
+                                          {ok && Files.map((e, key) => (
+                                            <Col lg="6">
+                                              <br />
+                                              <br />
+                                              <Card
+                                                className="card-lift--hover shadow border-0"
+                                                onClick={console.log(
+                                                  Files[key]
+                                                )}
+                                              >
+                                               
+
+<CardBody>
+                                                <span style={{float:'left'}}>Doc1</span>
+                                                <span>{Files[key].did}</span>
+                                                <span className="options" style={{float:'right'}}>
+                                                    <a href="#" className="viewDoc"><HiDocument/></a>&nbsp;&nbsp;&nbsp;
+                                                    <a className='Share' href='#'><FaShare/></a>&nbsp;&nbsp;&nbsp;
+                                                    <a className='Download' href='#'><FaFileDownload/></a>
+                                                </span>
+                                                </CardBody>
+
+                                                {Files[key]
+                                                  .did && (
+                                                  <Button
+                                                    block
+                                                    color="default"
+                                                    type="button"
+                                                    className="mr-4"
+                                                    onClick={() =>
+                                                      
+                                                        console.log("xyz")
+                                                      
+                                                    }
+                                                  >
+                                                    Reject Fetch Request
+                                                  </Button>
+                                                )}
+                                              </Card>
+                                            </Col>
+                                          ))}
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Container>
+                                </section>
+                              )}
+                            </Col>
+                          </Row>
+                        </div>
+                      </TabPane>
+                      <TabPane tabId="iconTabs3">
+                        <div className="mt-1 py-4 text-center">
+                          <Row className="justify-content-center">
+                            <Col lg="9">
+                              {Files.length > 0 && (
+                                <section>
+                                  <Container>
+                                    <Row className="justify-content-center">
+                                      <Col lg="12">
+                                        <Row className="row-grid">
+                                          {ok && Files.map((e, key) => (
+                                            <Col lg="6">
+                                              <br />
+                                              <br />
+                                              <Card
+                                                className="card-lift--hover shadow border-0"
+                                                onClick={console.log(
+                                                  Files[key].did
+                                                )}
+                                              >
+                                                
+
+                                                <CardBody>
+                                                <span style={{float:'left'}}>Doc1</span>
+                                                <span>{Files[key].did}</span>
+                                                <span className="options" style={{float:'right'}}>
+                                                    <a href="#" className="viewDoc"><HiDocument/></a>&nbsp;&nbsp;&nbsp;
+                                                    <a className='Share' href='#'><FaShare/></a>&nbsp;&nbsp;&nbsp;
+                                                    <a className='Download' href='#'><FaFileDownload/></a>
+                                                </span>
+                                                </CardBody>
+                                                {!Files[key]
+                                                  .did && (
+                                                  <Button
+                                                    block
+                                                    color="default"
+                                                    type="button"
+                                                    className="mr-4"
+                                                    onClick={() =>
+                                                      console.log("Clicked")
+                                                    }
+                                                  >
+                                                    Init Fetch Request
+                                                  </Button>
+                                                )}
+
+                                                {Files[key]
+                                                  .did && (
+                                                  <Button
+                                                    block
+                                                    color="default"
+                                                    type="button"
+                                                    className="mr-4"
+                                                    onClick={() =>
+                                                      
+                                                        console.log("abc")
+                                                      
+                                                    }
+                                                  >
+                                                    Claim NFT
+                                                  </Button>
+                                                )}
+                                              </Card>
+                                            </Col>
+                                          ))}
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Container>
+                                </section>
+                              )}
+                            </Col>
+                          </Row>
+                        </div>
+                      </TabPane>
+                    </TabContent>
+
                         </p>
                       </Col>
                     </Row>
