@@ -4,12 +4,12 @@ import React, { useState, useRef } from "react";
 import {
   Button,
   Card,
-  CardHeader,
+  // CardHeader,
   CardBody,
-  CardImg,
-  NavItem,
-  NavLink,
-  Nav,
+  // CardImg,
+  // NavItem,
+  // NavLink,
+  // Nav,
   TabContent,
   TabPane,
   Container,
@@ -20,10 +20,10 @@ import {
   InputGroupText,
   InputGroup,
   Modal,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem,
+  // UncontrolledDropdown,
   Row,
   Col,
 } from "reactstrap";
@@ -32,8 +32,8 @@ import classnames from "classnames";
 // core components
 import LoginNavbar from "components/Navbars/LoginNavbar.js";
 import SimpleFooter from "components/Footers/SimpleFooter.js";
-import { FaShare, FaFileDownload } from "react-icons/fa";
-import { HiDocument } from "react-icons/hi";
+// import { FaShare, FaFileDownload } from "react-icons/fa";
+// import { HiDocument } from "react-icons/hi";
 import { StorageProvider } from "@arcana/storage";
 import { AccessTypeEnum } from "@arcana/storage";
 
@@ -86,7 +86,7 @@ function Profile(props) {
 
   async function Download(did) {
     await init();
-    await dAppStorageProvider.download(did);
+    await dAppStorageProvider.download("025a4df8041e309c392d054e3eec825402fd7820b6d4fba299518c7a61bff6ca");
     console.log("Downloaded", did);
   }
   //***************************************************************************************************************************/
@@ -100,7 +100,8 @@ function Profile(props) {
   const [initialize, setInitialize] = useState(true);
   const [shareAddress, setShareAddress] = useState("");
 
-  const toggleNavs = (e, state, index) => {
+  // eslint-disable-next-line
+  const toggleNavs = (e, state, index) => { 
     e.preventDefault();
     setToggleState(index);
   };
@@ -173,13 +174,13 @@ function Profile(props) {
                 <Row className="justify-content-center">
                   <Col className="order-lg-2" lg="3">
                     <div className="card-profile-image">
-                      <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      {/* <a href="#pablo" onClick={(e) => e.preventDefault()}>
                         <img
                           alt="..."
                           className="rounded-circle"
-                          src={require("assets/img/theme/team-4-800x800.jpg")}
+                          src={require("assets/img/theme/img-1-1200x1000.jpg")}
                         />
-                      </a>
+                      </a> */}
                     </div>
                   </Col>
                   <Col
@@ -217,7 +218,7 @@ function Profile(props) {
                   </Col>
                 </Row>
                 <div className="text-center mt-5">
-                  <h3>Jessica Jones</h3>
+                  <h1>Dashboard</h1>
                 </div>
                 <div className="mt-5 py-5 border-top text-center">
                   <Row className="justify-content-center">
@@ -367,9 +368,10 @@ function Profile(props) {
                         </TabContent>
                       </div>
                     </Col>
-
+                    
                     <Col lg="9">
-                      <span>Shared With Me</span>
+                    <br /><br/>
+                      <span>SHARED WITH ME</span>
                       <div>
                         <TabContent activeTab={"iconTabs" + state}>
                           <TabPane tabId="iconTabs1">

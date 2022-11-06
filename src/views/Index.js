@@ -6,7 +6,7 @@ import SimpleFooter from "components/Footers/SimpleFooter.js";
 
 // index page sections
 import Landing from "../views/examples/Landing.js";
-import Login from "./IndexSections/Login.js";
+// import Login from "./IndexSections/Login.js";
 
 
 // import Dashbord from "./IndexSections/Dashbord.js";
