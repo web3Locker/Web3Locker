@@ -7,6 +7,7 @@
     "url": "git+https://github.com/web3Locker/web3Locker.git"
   },
   "author": "web3Locker",
+  "homepage": "https://www.web3locker.com/home/",
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
@@ -16,6 +17,7 @@
     "compile-sass": "sass src/assets/scss/argon-design-system-react.scss src/assets/css/argon-design-system-react.css",
     "minify-sass": "sass src/assets/scss/argon-design-system-react.scss src/assets/css/argon-design-system-react.min.css --style compressed"
   },
+  
   "eslintConfig": {
     "extends": "react-app"
   },

@@ -5,7 +5,7 @@ import React from "react";
 // reactstrap components
 import {
   Badge,
-  Button,
+  // Button,
   Card,
   CardBody,
   
@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 
 // core components
-import DemoNavbar from "components/Navbars/DemoNavbar.js";
+// import DemoNavbar from "components/Navbars/DemoNavbar.js";
 // index page sections
 
 class Landing extends React.Component {

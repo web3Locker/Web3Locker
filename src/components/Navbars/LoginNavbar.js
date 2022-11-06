@@ -1,25 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Headroom from "headroom.js";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import {
-  Button,
+  // Button,
   UncontrolledCollapse,
-  DropdownMenu,
-  DropdownItem,
-  DropdownToggle,
-  UncontrolledDropdown,
-  Media,
+  // DropdownMenu,
+  // DropdownItem,
+  // DropdownToggle,
+  // UncontrolledDropdown,
+  // Media,
   NavbarBrand,
   Navbar,
-  NavItem,
-  NavLink,
-  Nav,
+  // NavItem,
+  // NavLink,
+  // Nav,
   Container,
   Row,
   Col,
-  UncontrolledTooltip
+  // UncontrolledTooltip
 } from "reactstrap";
 
 class DemoNavbar extends React.Component {
