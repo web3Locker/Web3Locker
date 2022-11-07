@@ -61,7 +61,8 @@ class Landing extends React.Component {
                       <p className="lead text-white">
                         Web3Locker allows the users to create their accounts and
                         upload their documents. These verified documents can be
-                        shared and accessed by the user as desired
+                        shared and accessed by the user as desired. 
+                        It also uses the concept of zero knowledge proof to verify the documents.
                       </p>
                     </Col>
                   </Row>
@@ -104,8 +105,7 @@ class Landing extends React.Component {
                     </div>
                     <h3>Awesome features</h3>
                     <p>
-                      Web3Locker aims towards making it convenient and secure
-                      for users to store and share documents
+                    Web3Locker aims towards making it convenient and secure for users to store and share documents
                     </p>
                     <ul className="list-unstyled mt-5">
                       <li className="py-2">
@@ -115,13 +115,12 @@ class Landing extends React.Component {
                               className="badge-circle mr-3"
                               color="success"
                             >
-                              <i className="ni ni-settings-gear-65" />
+                              <i className="ni ni-planet" />
                             </Badge>
                           </div>
                           <div>
                             <h6 className="mb-0">
-                              Uses the decentralized platform which makes
-                              storing and accessing files faster.
+                            Uses the decentralized platform which makes storing and accessing files faster.
                             </h6>
                           </div>
                         </div>
@@ -137,14 +136,11 @@ class Landing extends React.Component {
                             </Badge>
                           </div>
                           <div>
-                            <h6 className="mb-0 py-3">
-                              Documents are verified to prevent any forgery or
-                              different files from being shared that are not
-                              associated to the original account.
-                            </h6>
+                            <h6 className="mb-0 py-3">Documents are verified to prevent any forgery or different files from being shared that are not associated to the original account.</h6>
                           </div>
                         </div>
                       </li>
+                      {/*  */}
                       <li className="py-2">
                         <div className="d-flex align-items-center">
                           <div>
@@ -152,12 +148,29 @@ class Landing extends React.Component {
                               className="badge-circle mr-3"
                               color="success"
                             >
-                              <i className="ni ni-satisfied" />
+                              <i className="ni ni-check-bold" />
+                            </Badge>
+                          </div>
+                          <div>
+                            <h6 className="mb-0 py-3">Polygon ID applies zero-knowledge native protocols for ultimate user privacy.</h6>
+                          </div>
+                        </div>
+                      </li>
+
+                      {/*  */}
+                      <li className="py-2">
+                        <div className="d-flex align-items-center">
+                          <div>
+                            <Badge
+                              className="badge-circle mr-3"
+                              color="success"
+                            >
+                              <i className="ni ni-badge" />
                             </Badge>
                           </div>
                           <div>
                             <h6 className="mb-0">
-                              Super friendly support team
+                              Maintain control over information shared and your digital identity.
                             </h6>
                           </div>
                         </div>
@@ -167,7 +180,7 @@ class Landing extends React.Component {
                 </Col>
               </Row>
             </Container>
-          </section>
+          </section>                 
           <section className="section pb-8 bg-gradient-warning">
             <Container>
               <Row className="row-grid align-items-center">
@@ -181,96 +194,85 @@ class Landing extends React.Component {
                   </div>
                 </Col>
                 <Col className="order-lg-1" lg="6">
-                  <Card className="shadow shadow-lg--hover mt-5">
+                <Card className="shadow shadow-lg--hover mt-5">
                     <CardBody>
                       <div className="d-flex px-3 ">
                         <div>
-                          <div className="icon icon-lg icon-shape bg-gradient-white shadow rounded-circle text-primary">
-                            <i className="ni ni-building text-primary" />
-                          </div>
-                        </div>
-                        <div className="pl-4">
-                          <h5 className="title text-success">Decentralized</h5>
-                          <p>
-                            A network of members can contribute their processing
-                            power to the service's operation and upkeep. This is
-                            the idea behind the decentralized architecture.
-                          </p>
-                          <a
-                            className="text-success"
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Learn more
-                          </a>
-                        </div>
-                      </div>
-                    </CardBody>
-                  </Card>
-                  {/* box2 */}
-
-                  <Card className="shadow shadow-lg--hover mt-5">
-                    <CardBody>
-                      <div className="d-flex px-3 ">
-                        <div>
-                          <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                            <i className="ni ni-building text-primary" />
-                          </div>
+                        <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                        <i className="ni ni-building text-primary" />
+                      </div> 
                         </div>
                         <div className="pl-4">
                           <h5 className="title text-success">
-                            The Arcana Network
-                          </h5>
-                          <p>
-                            {" "}
-                            More convenience to design and integrate the dApp is
-                            possible since it is powered by the Arcana Network,
-                            which offers total data protection and access
-                            control for user data.
-                          </p>
+                         The Arcana Network
+                         </h5>
+                         <p> More convenience to design and integrate the dApp is possible since it is powered by the Arcana Network, which offers total data protection and access control for user data. 
+                         </p>
                           <a
-                            className="text-success"
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Learn more
-                          </a>
-                        </div>
-                      </div>
-                    </CardBody>
-                  </Card>
+                           className="text-success"
+                           href="#pablo"
+                           onClick={(e) => e.preventDefault()}
+                        >
+                          Learn more
+                        </a>
+                       </div>
+                    </div>
+                   </CardBody>
+                 </Card>
                   {/* box 3 */}
+               
 
                   <Card className="shadow shadow-lg--hover mt-5">
                     <CardBody>
                       <div className="d-flex px-3 ">
                         <div>
-                          <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                            <i className="ni ni-building text-primary" />
-                          </div>
+                        <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                        <i className="ni ni-trophy text-primary" />
+                      </div> 
                         </div>
                         <div className="pl-4">
                           <h5 className="title text-success">
-                            Login with Unstoppable Domains
-                          </h5>
-                          <p>
-                            {" "}
-                            Thanks to Unstoppable, users have control over login
-                            credentials and the developers can avoid hosting
-                            database of user information by requesting access
-                            when needed.
-                          </p>
+                         Login with Unstoppable Domains
+                         </h5>
+                         <p> Thanks to Unstoppable, users have control over login credentials and the developers can avoid hosting database of user information by requesting access when needed. 
+                         </p>
                           <a
-                            className="text-success"
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Learn more
-                          </a>
+                           className="text-success"
+                           href="#pablo"
+                           onClick={(e) => e.preventDefault()}
+                        >
+                          Learn more
+                        </a>
+                       </div>
+                    </div>
+                   </CardBody>
+                 </Card>
+
+                 <Card className="shadow shadow-lg--hover mt-5">
+                    <CardBody>
+                      <div className="d-flex px-3 ">
+                        <div>
+                        <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                        <i className="ni ni-key-25 text-primary" />
+                      </div> 
                         </div>
-                      </div>
-                    </CardBody>
-                  </Card>
+                        <div className="pl-4">
+                          <h5 className="title text-success">
+                         Privacy with Polygon ID
+                         </h5>
+                         <p> Since Polygon ID is private, access control is based on proving verifiable information rather than sharing it with the verifier (Zero Knowledge concept).This ensures the Right of access to apps with user anonymity 
+                         </p>
+                          <a
+                           className="text-success"
+                           href="#pablo"
+                           onClick={(e) => e.preventDefault()}
+                        >
+                          Learn more
+                        </a>
+                       </div>
+                    </div>
+                   </CardBody>
+                 </Card>
                 </Col>
               </Row>
             </Container>

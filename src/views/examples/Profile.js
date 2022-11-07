@@ -49,16 +49,16 @@ function Profile(props) {
   //STORAGE********************************************************************************************************************
 
   
-const {default: Resolution} = require('@unstoppabledomains/resolution');
-const resolution = new Resolution();
+// const {default: Resolution} = require('@unstoppabledomains/resolution');
+// const resolution = new Resolution();
 
-function resolve(domain, currency) {
-  resolution
-    .addr(domain, currency)
-    .then((address) => setUDAddress(address))
-    .catch(console.error);
+// function resolve(domain, currency) {
+//   resolution
+//     .addr(domain, currency)
+//     .then((address) => setUDAddress(address))
+//     .catch(console.error);
     
-}
+// }
 
 // resolve('harshgupta22','MATIC');
 
@@ -139,7 +139,7 @@ function resolve(domain, currency) {
 
   // async function Revoke() {
   //   await init()
-  //   await dAppStorageProvider.files.revoke('025a4df8041e309c392d054e3eec825402fd7820b6d4fba299518c7a61bff6ca','0x5991fd6Ecc5634C4de497b47Eb0Aa0065fffb214');
+  //   await dAppStorageProvider.files.revoke('02ba26bc769390ed804b00aa9e4cfc7e5534ebb10233e885de1229269337c1fa','0x5991fd6Ecc5634C4de497b47Eb0Aa0065fffb214');
   //   console.log("Access Revoked");
   // }
 
@@ -235,7 +235,7 @@ function resolve(domain, currency) {
                         <img
                           alt="..."
                           className="rounded-circle"
-                          src={require("assets/img/theme/team-4-800x800.jpg")}
+                          src={require("assets/img/theme/photo.png")}
                         />
                       </a>
                     </div>
@@ -449,7 +449,8 @@ function resolve(domain, currency) {
                     
                     <Col lg="9">
                     <br /><br/>
-                      <span>SHARED WITH ME</span>
+                    {ok && sharedFiles.length > 0 &&(
+                      <span>SHARED WITH ME</span>)}
                       <div>
                         <TabContent activeTab={"iconTabs" + state}>
                           <TabPane tabId="iconTabs1">

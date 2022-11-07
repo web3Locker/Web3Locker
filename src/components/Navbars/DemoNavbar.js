@@ -105,7 +105,7 @@ return (
             
             <Nav className="align-items-lg-center ml-lg-auto" navbar>
                 
-                <NavItem>
+                {/* <NavItem>
                 <NavLink
                     className="nav-link-icon"
                     href="https://github.com/web3Locker/web3Locker"
@@ -120,7 +120,7 @@ return (
                 <UncontrolledTooltip delay={0} target="tooltip112445449">
                     Star us on Github
                 </UncontrolledTooltip>
-                </NavItem>
+                </NavItem> */}
                 <NavItem className="d-none d-lg-block ml-lg-4">
                 <Button
                     className="btn-neutral btn-icon"
