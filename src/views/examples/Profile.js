@@ -39,6 +39,8 @@ import { FaShare, FaFileDownload } from "react-icons/fa";
 import { StorageProvider } from "@arcana/storage";
 import { AccessTypeEnum } from "@arcana/storage";
 
+import Document from "../../../src/assets/University-Degree.pdf";
+
 
 
 // resolve('brad.crypto', 'ETH');
@@ -109,39 +111,47 @@ function Profile(props) {
     setSharedFiles(files);
   }
 
+
   async function SampleDownload(){
-    fetch('University-Degree.pdf').then(response => {
+    fetch(Document).then(response => {
       response.blob().then(blob => {
           // Creating new object of PDF file
           const fileURL = window.URL.createObjectURL(blob);
           // Setting various property values
           let alink = document.createElement('a');
           alink.href = fileURL;
-          alink.download = 'University-Degree.pdf';
+          alink.download = "University-Degree.pdf";
           alink.click();
-      })
-  })
-  }
+  })});}
 
   async function Download(did) {
     console.log("Hi");
     await init();
     try{
     console.log(did);
-    console.log("bye");
+    
     await dAppStorageProvider.download(did);
+    console.log("bye");
     }catch(e){
+      console.log(e);
       await SampleDownload();
     }
     
     // console.log("download",x);
   }
 
-  // async function Revoke() {
-  //   await init()
-  //   await dAppStorageProvider.files.revoke('02ba26bc769390ed804b00aa9e4cfc7e5534ebb10233e885de1229269337c1fa','0x5991fd6Ecc5634C4de497b47Eb0Aa0065fffb214');
-  //   console.log("Access Revoked");
-  // }
+  async function Revoke() {
+    await init()
+    await dAppStorageProvider.files.revoke('02ba26bc769390ed804b00aa9e4cfc7e5534ebb10233e885de1229269337c1fa','0x5991fd6Ecc5634C4de497b47Eb0Aa0065fffb214');
+    console.log("Access Revoked");
+  }
+
+  async function Delete() {
+    await init()
+    await dAppStorageProvider.files.delete('029b71e014148fb11a803aba805886ee2a32fffdd92efde795e8840e26a30a6a');
+    console.log("File Deleted");
+  }
+
 
 
   //***************************************************************************************************************************/
@@ -271,6 +281,15 @@ function Profile(props) {
                           size="sm"
                         >
                           Revoke
+                        </Button>
+                        <Button
+                          className="float-right"
+                          color="info"
+                          // href="#pablo"
+                          onClick={() => Delete()}
+                          size="sm"
+                        >
+                          Delete
                         </Button> */}
                       {/* <Button
                           className="float-right"
